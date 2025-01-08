@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Custom Web Development",
+    "discription": "Build responsive, user-friendly websites using modern frameworks like React, Vue.js, and Next.js."
+  },
+  {
+    "title": "UI/UX Design",
+    "discription": "Create beautiful and intuitive designs that focus on user experience and brand identity."
+  },
+  {
+    "title": "SEO Optimization",
+    "discription": "Boost your website's visibility with on-page and off-page SEO strategies."
+  },
+  {
+    "title": "Mobile App Development",
+    "discription": "Develop cross-platform mobile apps for Android and iOS using frameworks like React Native."
+  },
+  {
+    "title": "E-Commerce Solutions",
+    "discription": "Create powerful, customizable online stores with integrated payment gateways."
+  },
+  {
+    "title": "Branding & Logo Design",
+    "discription": "Design professional logos and branding assets that reflect your brand's identity."
+  }
+]
