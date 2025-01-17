@@ -39,7 +39,7 @@ export default function Home() {
 
   return (
     <div className="w-full h-full pt-[20px] ">
-      <main className="container">
+      <main className="container flex flex-col justify-center ">
         <Image
           className=""
           src="/LOGO.png"
@@ -89,7 +89,7 @@ export default function Home() {
             <span className="absolute inset-0 bg-gradient-to-r from-[#64a393] via-[#8ACEBE] to-[#2A9D8F] dark:from-[#2A9D8F]  dark:to-[#dafff6] transition-transform transform translate-x-full group-hover:translate-x-0"></span>
           </a>
         </div>
-        <div className="flex gap-2">
+        <div className="flex gap-2 pt-[20px] px-[20px]  justify-center sm:justify-start">
           <Image
             className="rounded-lg cursor-pointer"
             src="/Github.png"
