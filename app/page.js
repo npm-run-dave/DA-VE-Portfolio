@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
+
 import MyProject from "./block/MyProject";
 import Services from "./block/Services";
 import Contact from "./block/Contact";

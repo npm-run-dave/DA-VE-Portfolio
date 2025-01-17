@@ -25,7 +25,9 @@ export default function MyProject() {
                   className="object-cover w-full h-full shadow-inner"
                 />
               ) : (
-                <span className="text-gray-400">No Image Available</span>
+                <span className="text-gray-400">
+                  No Image Available..Coming soon
+                </span>
               )}
             </div>
 
