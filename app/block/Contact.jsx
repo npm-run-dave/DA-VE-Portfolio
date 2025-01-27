@@ -1,10 +1,30 @@
-import Image from "next/image";
-
+import { useState } from "react";
+import axios from "axios";
 export default function Contact() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log("Data", { name, email, message });
+
+    try {
+      const payload = {
+        name,
+        email,
+        message,
+      };
+      const res = axios.post("/api/contact", {
+        ...payload,
+      });
+    } catch (err) {}
+  };
+
   return (
     <section className="py-8 px-4">
-      <div className="max-w-3xl mx-auto ">
-        <form className="space-y-6">
+      <div className="max-w-3xl mx-auto">
+        <form onSubmit={onSubmit} className="space-y-6">
           <div>
             <label
               htmlFor="name"
@@ -13,6 +33,8 @@ export default function Contact() {
               Name:
             </label>
             <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               type="text"
               id="name"
               placeholder="Enter your Name"
@@ -28,6 +50,8 @@ export default function Contact() {
               Email:
             </label>
             <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               type="email"
               id="email"
               placeholder="Enter your Email"
@@ -43,6 +67,8 @@ export default function Contact() {
               Message:
             </label>
             <textarea
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
               id="message"
               placeholder="Send your message"
               rows="4"
