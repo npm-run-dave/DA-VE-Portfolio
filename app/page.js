@@ -90,9 +90,9 @@ export default function Home() {
           </Link>
         </div>
         <div className="flex gap-2 pt-[20px] px-[25px]  justify-center sm:justify-start ">
-          <Link href="#">
+          <Link href="#" className="h-[40px] w-[40px]">
             <Image
-              className="rounded-lg cursor-pointer"
+              className="rounded-lg cursor-pointer h-[39px] w-[39px] object-fill"
               src="/Github.png"
               alt="Github"
               width={35}
@@ -102,7 +102,7 @@ export default function Home() {
           </Link>
 
           <Image
-            className="rounded-lg cursor-pointer"
+            className="rounded-lg cursor-pointer h-[38px] w-[38px] object-fill"
             src="/Linkin.png"
             alt="LinkedIn"
             width={35}
@@ -110,7 +110,7 @@ export default function Home() {
             priority
           />
           <Image
-            className="rounded-lg cursor-pointer"
+            className="rounded-lg cursor-pointer h-[38px] w-[38px] object-fill"
             src="/Facebook.png"
             alt="Facebook"
             width={35}
