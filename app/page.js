@@ -49,7 +49,7 @@ export default function Home() {
         />
         <ol className="list-inside text-sm px-[20px] text-center  sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2">
-            <span className="text-blue-500 text-3xl">
+            <span className="text-blue-500 text-[20px] md:text-[40px] lg:text-3xl">
               <Typewriter
                 words={["Hi, I'm Dave"]}
                 loop={false}
@@ -58,7 +58,7 @@ export default function Home() {
                 typeSpeed={70}
               />
             </span>
-            <span className="text-2xl">
+            <span className="text-[15px] md:text-[20px] lg:text-2xl text-white ">
               , a passionate web developer specializing in crafting dynamic and
               responsive websites using modern frameworks like Vue.js, Next.js,
               and Express.js. With expertise in integrating CMS platforms and
@@ -118,19 +118,17 @@ export default function Home() {
             priority
           />
         </div>
-        <div className=" mt-40 h-full">
-          <h1 className="font-bold text-2xl translate-x-10">PROJECTS</h1>
-          <div className="mt-20">
+        <div className=" pt-[50px] h-full text-white">
+          <h1 className="font-bold text-2xl px-[25px] ">PROJECTS</h1>
+          <div className="pt-[30px]">
             <MyProject />
           </div>
           <div>
-            <h1 className="font-bold text-2xl translate-x-10 mb-20">
-              SERVICES
-            </h1>
+            <h1 className="font-bold text-2xl px-[25px] mb-20">SERVICES</h1>
             <Services />
           </div>
           <div>
-            <h1 className="font-bold text-2xl translate-x-10 mt-20">CONTACT</h1>
+            <h1 className="font-bold text-2xl px-[25px] mt-20">CONTACT</h1>
             <Contact />
           </div>
         </div>

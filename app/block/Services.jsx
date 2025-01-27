@@ -9,7 +9,9 @@ export default function Services() {
             className="service-card p-6 border rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
             key={index}
           >
-            <h3 className="text-xl font-semibold">{service.title}</h3>
+            <h3 className="text-xl font-semibold text-white">
+              {service.title}
+            </h3>
             <p className="mt-2 text-gray-400">{service.discription}</p>
           </div>
         ))}
