@@ -2,11 +2,11 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
-
 import MyProject from "./block/MyProject";
 import Services from "./block/Services";
 import Contact from "./block/Contact";
 import Footer from "./block/Footer";
+import Link from "next/link";
 
 export default function Home() {
   const [scrollDirection, setScrollDirection] = useState("down");
@@ -68,9 +68,9 @@ export default function Home() {
           </li>
         </ol>
         <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-white transition-colors flex items-center justify-center  text-white gap-2  text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+          <Link
             href="#"
+            className="rounded-full border border-solid border-white transition-colors flex items-center justify-center  text-white gap-2  text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
           >
             <Image
               className=""
@@ -80,24 +80,27 @@ export default function Home() {
               height={40}
             />
             DOWNLOAD CV
-          </a>
-          <a
-            className="relative overflow-hidden rounded-full border border-solid bg-white text-black  border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 group"
+          </Link>
+          <Link
             href="#"
+            className="relative overflow-hidden rounded-full border border-solid bg-white text-black  border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 group"
           >
             <span className="relative z-10">MY PROJECTS</span>
             <span className="absolute inset-0 bg-gradient-to-r from-[#64a393] via-[#8ACEBE] to-[#2A9D8F] dark:from-[#2A9D8F]  dark:to-[#dafff6] transition-transform transform translate-x-full group-hover:translate-x-0"></span>
-          </a>
+          </Link>
         </div>
         <div className="flex gap-2 pt-[20px] px-[20px]  justify-center sm:justify-start">
-          <Image
-            className="rounded-lg cursor-pointer"
-            src="/Github.png"
-            alt="Github"
-            width={35}
-            height={30}
-            priority
-          />
+          <Link href="#">
+            <Image
+              className="rounded-lg cursor-pointer"
+              src="/Github.png"
+              alt="Github"
+              width={35}
+              height={30}
+              priority
+            />
+          </Link>
+
           <Image
             className="rounded-lg cursor-pointer"
             src="/Linkin.png"

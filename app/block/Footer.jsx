@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   const myLocation =
     "https://www.google.com/maps/place/Canjulao,+Lapu-Lapu+City,+Cebu/@10.2878849,123.9322562,16z/data=!3m1!4b1!4m6!3m5!1s0x33a99986352e5ba1:0xd07b40adbd217233!8m2!3d10.2889273!4d123.9373697!16s%2Fg%2F1tks3w91?entry=ttu&g_ep=EgoyMDI1MDEwMi4wIKXMDSoASAFQAw%3D%3D";
@@ -7,12 +9,12 @@ export default function Footer() {
       <div className="text-center">
         <p className="text-md">
           <strong>Email:</strong>{" "}
-          <a
+          <Link
             href="mailto:ryandavedonos@gmail.com"
             className="text-indigo-500 hover:underline"
           >
             ryandavedonos@gmail.com
-          </a>
+          </Link>
         </p>
         <p className="text-md">
           <strong>Phone:</strong>{" "}
@@ -20,14 +22,14 @@ export default function Footer() {
         </p>
         <p className="text-md">
           <strong>Location:</strong>{" "}
-          <a
+          <Link
             href={myLocation}
             target="_blank"
             rel="noopener noreferrer"
             className="text-indigo-500 hover:underline"
           >
             Canjulao, Lapu-Lapu City, Cebu
-          </a>
+          </Link>
         </p>
       </div>
 
