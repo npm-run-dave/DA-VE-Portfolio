@@ -1,11 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
     console.log("Data", { name, email, message });
 
@@ -15,11 +18,21 @@ export default function Contact() {
         email,
         message,
       };
-      const res = axios.post("/api/contact", {
-        ...payload,
-      });
+
+      const res = await axios.post("/api/contact", payload);
+
+      if (res.status === 200) {
+        toast.success(
+          `Thank you, ${name}! Your message has been sent successfully!`
+        );
+
+        setName("");
+        setEmail("");
+        setMessage("");
+      }
     } catch (err) {
-      console.log("Submit Error!");
+      console.log("Submit Error!", err);
+      toast.error("Something went wrong, please try again later.");
     }
   };
 
@@ -88,6 +101,8 @@ export default function Contact() {
           </div>
         </form>
       </div>
+
+      <ToastContainer />
     </section>
   );
 }
