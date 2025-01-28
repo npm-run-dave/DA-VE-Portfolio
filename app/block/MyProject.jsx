@@ -15,7 +15,7 @@ export default function MyProject() {
             key={index}
             className="relative bg-white rounded-lg shadow-lg overflow-hidden group hover:cursor-pointer"
           >
-            <div className="h-48 text-gray-400 sm:h-56 md:h-64 lg:h-80 w-full bg-gray-200 flex justify-center items-center relative group-hover:opacity-50 shadow-lg group-hover:shadow-2xl group-hover:shadow-gray-900">
+            <div className="h-48 sm:h-56 md:h-64 lg:h-80 w-full bg-gray-200 flex justify-center items-center relative group-hover:opacity-50 shadow-lg group-hover:shadow-2xl group-hover:shadow-gray-900">
               {project.image ? (
                 <Image
                   src={project.image}
@@ -25,7 +25,9 @@ export default function MyProject() {
                   className="object-cover w-full h-full shadow-inner"
                 />
               ) : (
-                <span className="">No Image Available..Coming soon</span>
+                <span className="text-center text-gray-500">
+                  No Image Available..Coming soon
+                </span>
               )}
             </div>
 
@@ -33,7 +35,7 @@ export default function MyProject() {
               <h3 className="text-xl font-semibold sm:text-2xl">
                 {project.title}
               </h3>
-              <p className="mt-2 text-sm sm:text-base">{project.discription}</p>
+              <p className="mt-2 text-sm sm:text-base">{project.description}</p>
             </div>
           </div>
         ))}

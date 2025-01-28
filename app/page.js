@@ -52,11 +52,11 @@ export default function Home() {
           width={450}
           height={38}
         />
-        <ol className="list-inside text-sm px-[20px] text-center sm:text-left font-[family-name:var(--font-geist-mono)] min-h-[150px]">
-          <li className="mb-2">
-            <span className="text-blue-500 text-[20px] md:text-[40px] lg:text-3xl">
+        <ol className="list-inside text-sm px-[10px] sm:px-[20px] text-center sm:text-left font-[family-name:var(--font-geist-mono)] min-h-[150px]">
+          <li className="mb-4 sm:mb-2">
+            <span className="text-blue-500 text-[18px] sm:text-[20px] md:text-[40px] lg:text-3xl">
               {isLoading ? (
-                <div className="w-[200px] h-[30px] bg-gray-200 animate-pulse rounded"></div>
+                <div className="w-[150px] sm:w-[200px] h-[20px] sm:h-[30px] bg-gray-200 animate-pulse rounded"></div>
               ) : (
                 <Typewriter
                   words={["Hi, I'm Dave"]}
@@ -68,7 +68,7 @@ export default function Home() {
               )}
             </span>
 
-            <span className="text-[15px] md:text-[20px] lg:text-2xl text-white">
+            <span className="text-[12px] sm:text-[15px] md:text-[20px] lg:text-2xl text-white mt-2 sm:mt-4">
               , a passionate web developer specializing in crafting dynamic and
               responsive websites using modern frameworks like Vue.js, Next.js,
               and Express.js. With expertise in integrating CMS platforms and
@@ -77,6 +77,7 @@ export default function Home() {
             </span>
           </li>
         </ol>
+
         <div className="flex gap-4 items-center flex-col sm:flex-row pt-[45px]">
           <Link
             href="#"
