@@ -12,6 +12,7 @@ export default function Home() {
   const [scrollDirection, setScrollDirection] = useState("down");
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isAnimationPaused, setIsAnimationPaused] = useState(false);
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 3000);
@@ -68,13 +69,13 @@ export default function Home() {
               )}
             </span>
 
-            <span className="text-[12px] sm:text-[15px] md:text-[20px] lg:text-2xl text-white mt-2 sm:mt-4">
-              , a passionate web developer specializing in crafting dynamic and
+            <div className="text-[12px] sm:text-[15px] md:text-[20px] lg:text-2xl text-white mt-2 sm:mt-4">
+              a passionate web developer specializing in crafting dynamic and
               responsive websites using modern frameworks like Vue.js, Next.js,
               and Express.js. With expertise in integrating CMS platforms and
               creating user-friendly interfaces, I build efficient and scalable
               solutions to bring ideas to life.
-            </span>
+            </div>
           </li>
         </ol>
 
