@@ -25,17 +25,19 @@ export default function MyProject() {
                   className="object-cover w-full h-full shadow-inner"
                 />
               ) : (
-                <span className="text-center text-gray-500">
+                <span className="text-center text-gray-500 text-xs sm:text-sm">
                   No Image Available..Coming soon
                 </span>
               )}
             </div>
 
-            <div className="absolute inset-0 bg-gray-900 bg-opacity-70 text-white p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-              <h3 className="text-xl font-semibold sm:text-2xl">
+            <div className="absolute inset-0 bg-gray-900 bg-opacity-70 text-white p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+              <h3 className="text-lg sm:text-xl font-semibold">
                 {project.title}
               </h3>
-              <p className="mt-2 text-sm sm:text-base">{project.description}</p>
+              <p className="mt-2 text-xs sm:text-sm md:text-base">
+                {project.description}
+              </p>
             </div>
           </div>
         ))}
