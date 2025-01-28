@@ -1,8 +1,19 @@
 import nodemailer from "nodemailer";
+import validator from "validator";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { name, email, message } = req.body;
+
+    if (!name || !email || !message) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
+
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ message: "Invalid email format." });
+    }
+
+    const sanitizedMessage = validator.escape(message);
 
     let transporter = nodemailer.createTransport({
       service: "gmail",
@@ -97,7 +108,7 @@ export default async function handler(req, res) {
             <p><strong>Email:</strong> ${email}</p>
             <div class="message">
               <p><strong>Message:</strong></p>
-              <p>${message}</p>
+              <p>${sanitizedMessage}</p>
             </div>
           </div>
         </div>
@@ -106,7 +117,6 @@ export default async function handler(req, res) {
         </div>
       </body>
     </html>
-    
       `,
     };
 

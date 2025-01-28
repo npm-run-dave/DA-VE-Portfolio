@@ -2,29 +2,34 @@ import { useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Success from "../templates/Success";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [error, setError] = useState("");
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log("Data", { name, email, message });
+
+    if (!name || !email || !message) {
+      setError("Please fill in all fields.");
+      return;
+    }
+
+    setError("");
 
     try {
-      const payload = {
-        name,
-        email,
-        message,
-      };
+      const payload = { name, email, message };
 
       const res = await axios.post("/api/contact", payload);
 
       if (res.status === 200) {
-        toast.success(
-          `Thank you, ${name}! Your message has been sent successfully!`
-        );
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 3000);
 
         setName("");
         setEmail("");
@@ -56,7 +61,6 @@ export default function Contact() {
               className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-indigo-500"
             />
           </div>
-
           <div>
             <label
               htmlFor="email"
@@ -73,7 +77,6 @@ export default function Contact() {
               className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-indigo-500"
             />
           </div>
-
           <div>
             <label
               htmlFor="message"
@@ -90,7 +93,7 @@ export default function Contact() {
               className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-indigo-500"
             />
           </div>
-
+          {error && <p className="text-red-600">{error}</p>}{" "}
           <div className="flex justify-center">
             <button
               type="submit"
@@ -101,6 +104,12 @@ export default function Contact() {
           </div>
         </form>
       </div>
+
+      {showSuccess && (
+        <Success
+          message={`Thank you, ${name}! Your message has been sent successfully!`}
+        />
+      )}
 
       <ToastContainer />
     </section>
