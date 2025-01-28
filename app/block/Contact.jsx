@@ -18,7 +18,9 @@ export default function Contact() {
       const res = axios.post("/api/contact", {
         ...payload,
       });
-    } catch (err) {}
+    } catch (err) {
+      console.log("Submit Error!");
+    }
   };
 
   return (

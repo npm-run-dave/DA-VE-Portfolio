@@ -11,6 +11,11 @@ import Link from "next/link";
 export default function Home() {
   const [scrollDirection, setScrollDirection] = useState("down");
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => setIsLoading(false), 3000);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,18 +52,23 @@ export default function Home() {
           width={450}
           height={38}
         />
-        <ol className="list-inside text-sm px-[20px] text-center  sm:text-left font-[family-name:var(--font-geist-mono)]">
+        <ol className="list-inside text-sm px-[20px] text-center sm:text-left font-[family-name:var(--font-geist-mono)] min-h-[150px]">
           <li className="mb-2">
             <span className="text-blue-500 text-[20px] md:text-[40px] lg:text-3xl">
-              <Typewriter
-                words={["Hi, I'm Dave"]}
-                loop={false}
-                cursor
-                cursorStyle="_"
-                typeSpeed={70}
-              />
+              {isLoading ? (
+                <div className="w-[200px] h-[30px] bg-gray-200 animate-pulse rounded"></div>
+              ) : (
+                <Typewriter
+                  words={["Hi, I'm Dave"]}
+                  loop={false}
+                  cursor
+                  cursorStyle="_"
+                  typeSpeed={70}
+                />
+              )}
             </span>
-            <span className="text-[15px] md:text-[20px] lg:text-2xl text-white ">
+
+            <span className="text-[15px] md:text-[20px] lg:text-2xl text-white">
               , a passionate web developer specializing in crafting dynamic and
               responsive websites using modern frameworks like Vue.js, Next.js,
               and Express.js. With expertise in integrating CMS platforms and
@@ -73,11 +83,12 @@ export default function Home() {
             className="rounded-full border border-solid border-white transition-colors flex items-center justify-center  text-white gap-2  text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
           >
             <Image
-              className=""
-              src="/LOGO.png"
               alt="Vercel logomark"
+              src="/LOGO.png"
               width={40}
               height={40}
+              loading="lazy"
+              decoding="async"
             />
             DOWNLOAD CV
           </Link>
@@ -120,7 +131,7 @@ export default function Home() {
         </div>
         <div className=" pt-[50px] h-full text-white">
           <h1 className="font-bold text-2xl px-[25px] ">PROJECTS</h1>
-          <div className="pt-[30px]">
+          <div className="">
             <MyProject />
           </div>
           <div>
