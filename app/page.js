@@ -45,13 +45,18 @@ export default function Home() {
   return (
     <div className="w-full h-full pt-[20px] bg-black">
       <main className="container flex flex-col justify-center ">
-        <Image
-          className=""
-          src="/LOGO.png"
-          alt="davelogo"
-          width={450}
-          height={38}
-        />
+        {isLoading ? (
+          <div className="w-[450px] sm:w-[450px] h-[250px] bg-gray-200 animate-pulse rounded"></div>
+        ) : (
+          <Image
+            className=""
+            src="/LOGO.png"
+            alt="davelogo"
+            width={450}
+            height={38}
+          />
+        )}
+
         <ol className="list-inside text-sm px-[10px] sm:px-[20px] text-center sm:text-left font-[family-name:var(--font-geist-mono)] min-h-[150px]">
           <li className="mb-4 sm:mb-2">
             <span className="text-blue-500 text-[18px] sm:text-[20px] md:text-[40px] lg:text-3xl">
