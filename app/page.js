@@ -12,7 +12,6 @@ export default function Home() {
   const [scrollDirection, setScrollDirection] = useState("down");
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [isAnimationPaused, setIsAnimationPaused] = useState(false);
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 3000);
