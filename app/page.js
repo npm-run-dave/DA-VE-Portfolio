@@ -2,11 +2,13 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
-import MyProject from "./block/MyProject";
-import Services from "./block/Services";
-import Contact from "./block/Contact";
-import Footer from "./block/Footer";
+const MyProject = dynamic(() => import("./block/MyProject"), { ssr: false });
+const Services = dynamic(() => import("./block/Services"), { ssr: false });
+const Contact = dynamic(() => import("./block/Contact"), { ssr: false });
+const Footer = dynamic(() => import("./block/Footer"), { ssr: false });
+
 import Link from "next/link";
+import dynamic from "next/dynamic";
 
 export default function Home() {
   const [scrollDirection, setScrollDirection] = useState("down");
