@@ -102,8 +102,9 @@ export default function Contact() {
             />
           </div>
 
-          <div className="g-recaptcha">
+          <div className="g-recaptcha ">
             <ReCAPTCHA
+              theme="dark"
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
               onChange={onCaptchaChange}
             />

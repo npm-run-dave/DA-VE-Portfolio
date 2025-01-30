@@ -19,3 +19,8 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.rc-anchor-light {
+  background-color: #171717;
+  color: white;
+}
