@@ -13,7 +13,7 @@ export default function Contact() {
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false); // State to track loading
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ export default function Contact() {
     }
 
     setError("");
-    setIsLoading(true); // Set loading to true when submitting the form
+    setIsLoading(true);
 
     try {
       const payload = { name, email, message, captcha };
@@ -44,7 +44,7 @@ export default function Contact() {
       console.log("Submit Error!", err);
       toast.error("Something went wrong, please try again later.");
     } finally {
-      setIsLoading(false); // Reset loading state after request
+      setIsLoading(false);
     }
   };
 

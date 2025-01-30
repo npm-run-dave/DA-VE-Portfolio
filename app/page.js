@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
 import MyProject from "./block/MyProject";
@@ -12,6 +12,7 @@ export default function Home() {
   const [scrollDirection, setScrollDirection] = useState("down");
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const projectsRef = useRef(null); // Reference for the Projects section
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 3000);
@@ -39,6 +40,16 @@ export default function Home() {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  // Scroll to the Projects section
+  const scrollToProjects = () => {
+    if (projectsRef.current) {
+      projectsRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start", // Scrolls to the top of the section
+      });
     }
   };
 
@@ -101,6 +112,7 @@ export default function Home() {
 
           <Link
             href="#"
+            onClick={scrollToProjects} // Scroll to the Projects section
             className="relative overflow-hidden rounded-full border border-solid bg-white text-black border-black/[.08] dark:border-white/[.145] transition-all duration-500 ease-out flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 group"
           >
             <span className="relative z-10">MY PROJECTS</span>
@@ -137,7 +149,8 @@ export default function Home() {
             priority
           />
         </div>
-        <div className=" pt-[150px] h-full text-white">
+
+        <div ref={projectsRef} className="pt-[150px] h-full text-white">
           <h1 className="font-bold text-2xl px-[35px] ">PROJECTS</h1>
           <div className="">
             <MyProject />
@@ -152,6 +165,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+
       {showScrollButton && (
         <button
           onClick={handleScroll}
