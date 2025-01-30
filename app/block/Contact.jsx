@@ -3,11 +3,13 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Success from "../templates/Success";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [captcha, setCaptcha] = useState(null);
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
@@ -15,15 +17,15 @@ export default function Contact() {
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (!name || !email || !message) {
-      setError("Please fill in all fields.");
+    if (!name || !email || !message || !captcha) {
+      setError("Please fill in all fields and complete the CAPTCHA.");
       return;
     }
 
     setError("");
 
     try {
-      const payload = { name, email, message };
+      const payload = { name, email, message, captcha };
 
       const res = await axios.post("/api/contact", payload);
 
@@ -41,6 +43,10 @@ export default function Contact() {
       console.log("Submit Error!", err);
       toast.error("Something went wrong, please try again later.");
     }
+  };
+
+  const onCaptchaChange = (value) => {
+    setCaptcha(value);
   };
 
   return (
@@ -95,7 +101,16 @@ export default function Contact() {
               className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-indigo-500"
             />
           </div>
-          {error && <p className="text-red-600">{error}</p>}{" "}
+
+          <div className="g-recaptcha">
+            <ReCAPTCHA
+              sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+              onChange={onCaptchaChange}
+            />
+          </div>
+
+          {error && <p className="text-red-600">{error}</p>}
+
           <div className="flex justify-center">
             <button
               type="submit"
@@ -106,6 +121,7 @@ export default function Contact() {
           </div>
         </form>
       </div>
+
       {showSuccess && (
         <Success
           message={`Thank you, ${
