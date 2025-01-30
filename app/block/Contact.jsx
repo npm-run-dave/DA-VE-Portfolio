@@ -29,11 +29,13 @@ export default function Contact() {
 
       if (res.status === 200) {
         setShowSuccess(true);
-        setTimeout(() => setShowSuccess(false), 3000);
 
-        setName("");
-        setEmail("");
-        setMessage("");
+        setTimeout(() => {
+          setShowSuccess(false);
+          setName("");
+          setEmail("");
+          setMessage("");
+        }, 3000);
       }
     } catch (err) {
       console.log("Submit Error!", err);
@@ -104,10 +106,11 @@ export default function Contact() {
           </div>
         </form>
       </div>
-
       {showSuccess && (
         <Success
-          message={`Thank you, ${name}! Your message has been sent successfully!`}
+          message={`Thank you, ${
+            name || "Guest"
+          }! Your message has been sent successfully!`}
         />
       )}
 
