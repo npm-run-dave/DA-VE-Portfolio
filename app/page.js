@@ -83,7 +83,7 @@ export default function Home() {
           </li>
         </ol>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row pt-[45px]">
+        <div className="flex gap-4 items-center flex-col sm:flex-row pt-[45px] px-[25px]">
           <Link
             href="#"
             className="rounded-full border border-solid border-white transition-colors flex items-center justify-center text-white gap-2 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
@@ -108,7 +108,7 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="flex gap-2 pt-[20px] px-[25px]  justify-center sm:justify-start ">
+        <div className="flex gap-2 pt-[20px] px-[70px] justify-center sm:justify-start ">
           <Link href="#" className="h-[40px] w-[40px]">
             <Image
               className="rounded-lg cursor-pointer h-[39px] w-[39px] object-fill"
@@ -137,17 +137,17 @@ export default function Home() {
             priority
           />
         </div>
-        <div className=" pt-[50px] h-full text-white">
-          <h1 className="font-bold text-2xl px-[25px] ">PROJECTS</h1>
+        <div className=" pt-[150px] h-full text-white">
+          <h1 className="font-bold text-2xl px-[35px] ">PROJECTS</h1>
           <div className="">
             <MyProject />
           </div>
           <div>
-            <h1 className="font-bold text-2xl px-[25px] mb-20">SERVICES</h1>
+            <h1 className="font-bold text-2xl px-[35px] ">SERVICES</h1>
             <Services />
           </div>
           <div>
-            <h1 className="font-bold text-2xl px-[25px] mt-20">CONTACT</h1>
+            <h1 className="font-bold text-2xl px-[35px] mt-20">CONTACT</h1>
             <Contact />
           </div>
         </div>

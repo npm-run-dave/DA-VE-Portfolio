@@ -13,6 +13,7 @@ export default function Contact() {
 
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false); // State to track loading
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -23,10 +24,10 @@ export default function Contact() {
     }
 
     setError("");
+    setIsLoading(true); // Set loading to true when submitting the form
 
     try {
       const payload = { name, email, message, captcha };
-
       const res = await axios.post("/api/contact", payload);
 
       if (res.status === 200) {
@@ -42,6 +43,8 @@ export default function Contact() {
     } catch (err) {
       console.log("Submit Error!", err);
       toast.error("Something went wrong, please try again later.");
+    } finally {
+      setIsLoading(false); // Reset loading state after request
     }
   };
 
@@ -102,7 +105,7 @@ export default function Contact() {
             />
           </div>
 
-          <div className="g-recaptcha ">
+          <div className="">
             <ReCAPTCHA
               theme="dark"
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -116,8 +119,34 @@ export default function Contact() {
             <button
               type="submit"
               className="w-full sm:w-auto py-2 px-6 bg-black border text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              disabled={isLoading} // Disable button while loading
             >
-              Send Message
+              {isLoading ? (
+                <div className="flex items-center justify-center">
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                      fill="none"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 1 1 8 8 8 8 0 0 1-8-8zm2 0a6 6 0 1 0 6-6 6 6 0 0 0-6 6z"
+                    />
+                  </svg>
+                </div>
+              ) : (
+                "Send Message"
+              )}
             </button>
           </div>
         </form>
