@@ -118,30 +118,109 @@ export default function Contact() {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="w-full sm:w-auto py-2 px-6 bg-black border text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              disabled={isLoading} // Disable button while loading
+              className="w-full sm:w-auto py-2 px-6 bg-black border text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transform transition-all duration-200 ease-in-out"
+              disabled={isLoading}
             >
               {isLoading ? (
                 <div className="flex items-center justify-center">
                   <svg
-                    className="animate-spin h-5 w-5 text-white"
                     xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="xMidYMid"
+                    width="50"
+                    height="50"
                   >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                      fill="none"
-                    />
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 1 1 8 8 8 8 0 0 1-8-8zm2 0a6 6 0 1 0 6-6 6 6 0 0 0-6 6z"
-                    />
+                    <g>
+                      <g>
+                        <circle fill="#5bcde1" r="4" cy="50" cx="60">
+                          <animate
+                            begin="-0.67s"
+                            keyTimes="0;1"
+                            values="95;35"
+                            dur="1s"
+                            repeatCount="indefinite"
+                            attributeName="cx"
+                          ></animate>
+                          <animate
+                            begin="-0.67s"
+                            keyTimes="0;0.2;1"
+                            values="0;1;1"
+                            dur="1s"
+                            repeatCount="indefinite"
+                            attributeName="fill-opacity"
+                          ></animate>
+                        </circle>
+                        <circle fill="#5bcde1" r="4" cy="50" cx="60">
+                          <animate
+                            begin="-0.33s"
+                            keyTimes="0;1"
+                            values="95;35"
+                            dur="1s"
+                            repeatCount="indefinite"
+                            attributeName="cx"
+                          ></animate>
+                          <animate
+                            begin="-0.33s"
+                            keyTimes="0;0.2;1"
+                            values="0;1;1"
+                            dur="1s"
+                            repeatCount="indefinite"
+                            attributeName="fill-opacity"
+                          ></animate>
+                        </circle>
+                        <circle fill="#5bcde1" r="4" cy="50" cx="60">
+                          <animate
+                            begin="0s"
+                            keyTimes="0;1"
+                            values="95;35"
+                            dur="1s"
+                            repeatCount="indefinite"
+                            attributeName="cx"
+                          ></animate>
+                          <animate
+                            begin="0s"
+                            keyTimes="0;0.2;1"
+                            values="0;1;1"
+                            dur="1s"
+                            repeatCount="indefinite"
+                            attributeName="fill-opacity"
+                          ></animate>
+                        </circle>
+                      </g>
+                      <g transform="translate(-15 0)">
+                        <path
+                          transform="rotate(90 50 50)"
+                          fill="#576a8c"
+                          d="M50 50L20 50A30 30 0 0 0 80 50Z"
+                        ></path>
+                        <path
+                          fill="#576a8c"
+                          d="M50 50L20 50A30 30 0 0 0 80 50Z"
+                        >
+                          <animateTransform
+                            keyTimes="0;0.5;1"
+                            values="0 50 50;45 50 50;0 50 50"
+                            dur="1s"
+                            repeatCount="indefinite"
+                            type="rotate"
+                            attributeName="transform"
+                          ></animateTransform>
+                        </path>
+                        <path
+                          fill="#576a8c"
+                          d="M50 50L20 50A30 30 0 0 1 80 50Z"
+                        >
+                          <animateTransform
+                            keyTimes="0;0.5;1"
+                            values="0 50 50;-45 50 50;0 50 50"
+                            dur="1s"
+                            repeatCount="indefinite"
+                            type="rotate"
+                            attributeName="transform"
+                          ></animateTransform>
+                        </path>
+                      </g>
+                    </g>
                   </svg>
                 </div>
               ) : (
