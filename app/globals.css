@@ -19,3 +19,26 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+/* styles/styles.css */
+.section {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: Add a fade effect for the scroll button */
+.scroll-button {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-button.show {
+  opacity: 1;
+  transform: translateY(0);
+}

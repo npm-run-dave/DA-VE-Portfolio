@@ -8,6 +8,7 @@ import Contact from "./block/Contact";
 import Footer from "./block/Footer";
 import Link from "next/link";
 import DownloadApp from "./templates/Downloadapp.jsx";
+import Testblock from "./block/testblock.jsx";
 
 export default function Home() {
   const [scrollDirection, setScrollDirection] = useState("down");
@@ -149,6 +150,7 @@ export default function Home() {
             priority
           />
         </div>
+        <Testblock />
 
         <div ref={projectsRef} className="pt-[150px] h-full text-white">
           <h1 className="font-bold text-2xl px-[35px] ">PROJECTS</h1>

@@ -21,8 +21,6 @@ export const metadata = {
   ],
 };
 
-// This is where you'd move themeColor/viewport management,
-// and ensure the icons exist at /public/icons/icon-128x128.png
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
