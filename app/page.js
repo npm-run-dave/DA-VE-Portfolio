@@ -175,7 +175,6 @@ export default function Home() {
           {scrollDirection === "down" ? "⬇" : "⬆"}
         </button>
       )}
-
       <Footer />
     </div>
   );
