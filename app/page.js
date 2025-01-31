@@ -7,12 +7,13 @@ import Services from "./block/Services";
 import Contact from "./block/Contact";
 import Footer from "./block/Footer";
 import Link from "next/link";
+import DownloadApp from "./templates/Downloadapp.jsx";
 
 export default function Home() {
   const [scrollDirection, setScrollDirection] = useState("down");
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const projectsRef = useRef(null); // Reference for the Projects section
+  const projectsRef = useRef(null);
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 3000);
@@ -43,12 +44,11 @@ export default function Home() {
     }
   };
 
-  // Scroll to the Projects section
   const scrollToProjects = () => {
     if (projectsRef.current) {
       projectsRef.current.scrollIntoView({
         behavior: "smooth",
-        block: "start", // Scrolls to the top of the section
+        block: "start",
       });
     }
   };
@@ -112,7 +112,7 @@ export default function Home() {
 
           <Link
             href="#"
-            onClick={scrollToProjects} // Scroll to the Projects section
+            onClick={scrollToProjects}
             className="relative overflow-hidden rounded-full border border-solid bg-white text-black border-black/[.08] dark:border-white/[.145] transition-all duration-500 ease-out flex items-center justify-center text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44 group"
           >
             <span className="relative z-10">MY PROJECTS</span>
@@ -165,7 +165,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-
+      <DownloadApp />
       {showScrollButton && (
         <button
           onClick={handleScroll}
