@@ -2,7 +2,7 @@
   "name": "Dave Portfolio",
   "short_name": "Dave App",
   "theme_color": "#35155D",
-  "background_color": "#ffffff",
+  "background_color": "#000000",
   "display": "standalone",
   "scope": "/",
   "start_url": "/",
