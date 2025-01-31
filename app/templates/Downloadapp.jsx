@@ -41,7 +41,7 @@ export default function Downloadapp() {
       <main className="container flex flex-col justify-center">
         {isInstallable && (
           <div
-            className="install-prompt fixed left-0 bottom-[60%] bg-gray-800 text-white p-2 rounded-r-lg shadow-lg flex justify-between items-center transition-all duration-300 ease-in-out transform group"
+            className="install-prompt fixed left-0 bottom-[60%] bg-gray-800 text-white  rounded-r-lg shadow-lg flex justify-between items-center transition-all duration-300 ease-in-out transform group"
             style={{
               zIndex: 9999,
               backgroundSize: "200% 100%",
@@ -85,7 +85,7 @@ export default function Downloadapp() {
                   />
                 </g>
               </svg>
-              <span className="absolute bottom-[-5px] left-[100px] transform -translate-x-1/2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span className="absolute bottom-[-5px] left-[100px] transform -translate-x-1/2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[14px]">
                 Download App?
               </span>
             </button>
