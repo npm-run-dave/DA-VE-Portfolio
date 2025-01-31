@@ -26,6 +26,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <link rel="manifest" href="/manifest.json" />
+
       <body className={inter.className}>{children}</body>
     </html>
   );
