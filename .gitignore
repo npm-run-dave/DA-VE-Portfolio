@@ -10,6 +10,12 @@
 !.yarn/releases
 !.yarn/versions
 
+# local env files
+.env
+
+# Auto Generated PWA files
+**/public/sw.js
+**/public/workbox-*.js
 # testing
 /coverage
 
