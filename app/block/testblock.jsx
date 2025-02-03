@@ -3,12 +3,21 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-export default function Block() {
+export default function Block({ contactRef }) {
   const [rotate, setRotate] = useState(0);
   const [linePosition, setLinePosition] = useState(0);
   const [lineOpacity, setLineOpacity] = useState(1);
   const [spinnerOpacity, setSpinnerOpacity] = useState(1);
   const [screenWidth, setScreenWidth] = useState(0);
+
+  const handleGetInTouchClick = () => {
+    if (contactRef && contactRef.current) {
+      contactRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -112,7 +121,10 @@ export default function Block() {
               alt="thumbnail"
               className="transition-all duration-700  object-cover"
             />
-            <h2 className="absolute top-[25px] text-[13px] left-[55px] text-white font-bold">
+            <h2
+              className="absolute top-[25px] text-[13px] left-[55px] text-white font-bold"
+              onClick={handleGetInTouchClick}
+            >
               GET IN TOUCH
             </h2>
           </div>
