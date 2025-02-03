@@ -160,7 +160,7 @@ export default function Home() {
             priority
           />
         </div>
-        <Link href="" onClick={scrollContact}>
+        <Link href="#" onClick={scrollContact}>
           <Testblock />
         </Link>
         <div className="pt-[150px] h-full text-white scroll-smooth slide-top view">
