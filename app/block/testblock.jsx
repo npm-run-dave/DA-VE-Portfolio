@@ -33,33 +33,47 @@ export default function Block() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center">
+    <div className="flex justify-center items-center flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0">
       <div
+        className="transition-all ease-out"
         style={{
           transform: `translateX(-${linePosition}px)`,
           opacity: lineOpacity,
-          transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
         }}
       >
         <Image src="/Line.jpg" width={300} height={20} alt="line" />
       </div>
-
-      <div
-        style={{
-          transform: `rotate(${rotate}deg)`,
-          opacity: spinnerOpacity,
-          transition:
-            "transform 0.05s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.1s ease-out",
-        }}
-      >
-        <Image src="/spiner.jpg" height={400} width={400} alt="imagespiner" />
+      <div className="relative">
+        <div
+          className="transition-all ease-out"
+          style={{
+            transform: `rotate(${rotate}deg)`,
+            opacity: spinnerOpacity,
+          }}
+        >
+          <Image src="/spiner.jpg" height={400} width={400} alt="spinner" />
+        </div>
+        <div className="absolute transition-all duration-700 hover:filter hover:brightness-150 cursor-pointer top-[110px] left-[102px]  ">
+          <div className="w-full h-auto relative">
+            <Image
+              src="/Rectangle.jpg"
+              width={200}
+              height={150}
+              alt="thumbnail"
+              className="transition-all duration-700  object-cover"
+            />
+            <h2 className="absolute top-[25px] text-[13px] left-[55px] text-white font-bold">
+              GET IN TOUCH
+            </h2>
+          </div>
+        </div>
       </div>
 
       <div
+        className="transition-all ease-out"
         style={{
           transform: `translateX(${linePosition}px)`,
           opacity: lineOpacity,
-          transition: "transform 0.1s ease-out, opacity 0.1s ease-out",
         }}
       >
         <Image src="/Line.jpg" width={300} height={20} alt="line" />

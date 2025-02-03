@@ -19,7 +19,6 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
-/* styles/styles.css */
 .section {
   opacity: 0;
   transform: translateY(100px);
@@ -31,7 +30,6 @@ body {
   transform: translateY(0);
 }
 
-/* Optional: Add a fade effect for the scroll button */
 .scroll-button {
   opacity: 0;
   transform: translateY(50px);
@@ -41,4 +39,44 @@ body {
 .scroll-button.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+.border-image {
+  filter: drop-shadow(2px 2px 1px white) drop-shadow(-2px -2px 1px white);
+}
+html {
+  @apply scroll-smooth;
+}
+
+.slide-top {
+  -webkit-animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@-webkit-keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px);
+  }
+  100% {
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+  }
+}
+@keyframes slide-top {
+  0% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+  50% {
+    -webkit-transform: translateY(-50px);
+    transform: translateY(-50px);
+  }
+  100% {
+    -webkit-transform: translateY(-100px);
+    transform: translateY(-100px);
+  }
 }

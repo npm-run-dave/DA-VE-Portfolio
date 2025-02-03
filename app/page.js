@@ -15,10 +15,23 @@ export default function Home() {
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const projectsRef = useRef(null);
+  const [scrollY, setScrollY] = useState(null);
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 3000);
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrollY]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -151,17 +164,20 @@ export default function Home() {
           />
         </div>
         <Testblock />
-
-        <div ref={projectsRef} className="pt-[150px] h-full text-white">
-          <h1 className="font-bold text-2xl px-[35px] ">PROJECTS</h1>
-          <div className="">
+        <div
+          ref={projectsRef}
+          className={`pt-[150px] h-full text-white scroll-smooth `}
+        >
+          <div className={`${scrollY >= 10 ? "slide-top block" : "hidden"}`}>
+            <h1 className="font-bold text-2xl px-[35px] ">PROJECTS</h1>
             <MyProject />
           </div>
-          <div>
+
+          <div className={`${scrollY >= 1100 ? "slide-top block" : "hidden"}`}>
             <h1 className="font-bold text-2xl px-[35px] ">SERVICES</h1>
             <Services />
           </div>
-          <div>
+          <div className={`${scrollY >= 1500 ? "slide-top block" : "hidden"}`}>
             <h1 className="font-bold text-2xl px-[35px] mt-20">CONTACT</h1>
             <Contact />
           </div>
