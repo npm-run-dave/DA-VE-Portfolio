@@ -15,8 +15,18 @@ export default function Block() {
 
       setRotate(scrollY * 0.8);
 
-      const scrollFactor = scrollY / 3;
-      setLinePosition(scrollFactor);
+      let scrollFactor = scrollY / 3;
+
+      const maxPosition = window.innerWidth - 300;
+      if (scrollFactor > 90) {
+        scrollFactor = 90;
+      }
+
+      const constrainedPosition = Math.max(
+        0,
+        Math.min(scrollFactor, maxPosition)
+      );
+      setLinePosition(constrainedPosition);
 
       const opacity = Math.max(1 - scrollY / 300, 0);
       setLineOpacity(opacity);
@@ -33,7 +43,7 @@ export default function Block() {
   }, []);
 
   return (
-    <div className="flex justify-center items-center flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0">
+    <div className="flex justify-center items-center flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 ">
       <div
         className="transition-all ease-out"
         style={{
@@ -43,6 +53,7 @@ export default function Block() {
       >
         <Image src="/Line.jpg" width={300} height={20} alt="line" />
       </div>
+
       <div className="relative">
         <div
           className="transition-all ease-out"
