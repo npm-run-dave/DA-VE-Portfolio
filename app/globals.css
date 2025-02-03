@@ -48,35 +48,18 @@ html {
   @apply scroll-smooth;
 }
 
-.slide-top {
-  -webkit-animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  animation: slide-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-}
-@-webkit-keyframes slide-top {
-  0% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
+@keyframes appear {
+  from {
+    opacity: 0;
+    scale: 0.5;
   }
-  50% {
-    -webkit-transform: translateY(-50px);
-    transform: translateY(-50px);
-  }
-  100% {
-    -webkit-transform: translateY(-100px);
-    transform: translateY(-100px);
+  to {
+    opacity: 1;
+    scale: 1;
   }
 }
-@keyframes slide-top {
-  0% {
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-  }
-  50% {
-    -webkit-transform: translateY(-50px);
-    transform: translateY(-50px);
-  }
-  100% {
-    -webkit-transform: translateY(-100px);
-    transform: translateY(-100px);
-  }
+.blocked {
+  animation: appear linear;
+  animation-timeline: view();
+  animation-range: entry 0%;
 }
