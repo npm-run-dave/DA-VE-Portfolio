@@ -15,6 +15,7 @@ export default function Home() {
   const [showScrollButton, setShowScrollButton] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const projectsRef = useRef(null);
+  const contactRef = useRef(null);
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 3000);
@@ -48,6 +49,15 @@ export default function Home() {
   const scrollToProjects = () => {
     if (projectsRef.current) {
       projectsRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  const scrollContact = () => {
+    if (contactRef.current) {
+      contactRef.current.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
@@ -150,12 +160,11 @@ export default function Home() {
             priority
           />
         </div>
-        <Testblock />
-        <div
-          ref={projectsRef}
-          className="pt-[150px] h-full text-white scroll-smooth slide-top view"
-        >
-          <div className="blocked">
+        <Link href="" onClick={scrollContact}>
+          <Testblock />
+        </Link>
+        <div className="pt-[150px] h-full text-white scroll-smooth slide-top view">
+          <div className="blocked" ref={projectsRef}>
             <h1 className="font-bold text-2xl px-[35px] ">PROJECTS</h1>
 
             <MyProject />
@@ -164,7 +173,7 @@ export default function Home() {
             <h1 className="font-bold text-2xl px-[35px] ">SERVICES</h1>
             <Services />
           </div>
-          <div className="blocked">
+          <div className="blocked" ref={contactRef}>
             <h1 className="font-bold text-2xl px-[35px] mt-20">CONTACT</h1>
             <Contact />
           </div>

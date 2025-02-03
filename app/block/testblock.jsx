@@ -8,10 +8,9 @@ export default function Block() {
   const [linePosition, setLinePosition] = useState(0);
   const [lineOpacity, setLineOpacity] = useState(1);
   const [spinnerOpacity, setSpinnerOpacity] = useState(1);
-  const [screenWidth, setScreenWidth] = useState(0); // Initialize with 0 to prevent SSR issues
+  const [screenWidth, setScreenWidth] = useState(0);
 
   useEffect(() => {
-    // Ensure the code runs only in the browser
     if (typeof window !== "undefined") {
       setScreenWidth(window.innerWidth);
 
@@ -46,11 +45,10 @@ export default function Block() {
         Math.min(scrollFactor, maxPosition)
       );
 
-      // Only update linePosition if the screen is not in the mobile range
       if (screenWidth < 640) {
-        setLinePosition(0); // For mobile screens (320px - 639px)
+        setLinePosition(0);
       } else {
-        setLinePosition(constrainedPosition); // For larger screens
+        setLinePosition(constrainedPosition);
       }
 
       const opacity = Math.max(1 - scrollY / 300, 0);
