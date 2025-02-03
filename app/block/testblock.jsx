@@ -8,6 +8,24 @@ export default function Block() {
   const [linePosition, setLinePosition] = useState(0);
   const [lineOpacity, setLineOpacity] = useState(1);
   const [spinnerOpacity, setSpinnerOpacity] = useState(1);
+  const [screenWidth, setScreenWidth] = useState(0); // Initialize with 0 to prevent SSR issues
+
+  useEffect(() => {
+    // Ensure the code runs only in the browser
+    if (typeof window !== "undefined") {
+      setScreenWidth(window.innerWidth);
+
+      const handleResize = () => {
+        setScreenWidth(window.innerWidth);
+      };
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +36,7 @@ export default function Block() {
       let scrollFactor = scrollY / 3;
 
       const maxPosition = window.innerWidth - 300;
+
       if (scrollFactor > 90) {
         scrollFactor = 90;
       }
@@ -26,7 +45,13 @@ export default function Block() {
         0,
         Math.min(scrollFactor, maxPosition)
       );
-      setLinePosition(constrainedPosition);
+
+      // Only update linePosition if the screen is not in the mobile range
+      if (screenWidth < 640) {
+        setLinePosition(0); // For mobile screens (320px - 639px)
+      } else {
+        setLinePosition(constrainedPosition); // For larger screens
+      }
 
       const opacity = Math.max(1 - scrollY / 300, 0);
       setLineOpacity(opacity);
@@ -35,12 +60,16 @@ export default function Block() {
       setSpinnerOpacity(spinnerOpacityValue);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", handleScroll);
+    }
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("scroll", handleScroll);
+      }
     };
-  }, []);
+  }, [screenWidth]);
 
   return (
     <div className="flex justify-center items-center flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0 ">
@@ -51,7 +80,13 @@ export default function Block() {
           opacity: lineOpacity,
         }}
       >
-        <Image src="/Line.jpg" width={300} height={20} alt="line" />
+        <Image
+          src="/Line.jpg"
+          width={300}
+          height={20}
+          alt="line"
+          className=""
+        />
       </div>
 
       <div className="relative">
@@ -62,9 +97,15 @@ export default function Block() {
             opacity: spinnerOpacity,
           }}
         >
-          <Image src="/spiner.jpg" height={400} width={400} alt="spinner" />
+          <Image
+            src="/spiner.jpg"
+            height={200}
+            width={400}
+            alt="spinner"
+            className="w-[300px] sm:w-[400px]"
+          />
         </div>
-        <div className="absolute transition-all duration-700 hover:filter hover:brightness-150 cursor-pointer top-[110px] left-[102px]  ">
+        <div className="absolute transition-all duration-700 hover:filter hover:brightness-150 cursor-pointer top-[75px] sm:top-[110px] left-[45px] sm:left-[102px]  ">
           <div className="w-full h-auto relative">
             <Image
               src="/Rectangle.jpg"
@@ -87,7 +128,13 @@ export default function Block() {
           opacity: lineOpacity,
         }}
       >
-        <Image src="/Line.jpg" width={300} height={20} alt="line" />
+        <Image
+          src="/Line.jpg"
+          width={300}
+          height={20}
+          alt="line"
+          className=""
+        />
       </div>
     </div>
   );

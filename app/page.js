@@ -151,7 +151,6 @@ export default function Home() {
           />
         </div>
         <Testblock />
-
         <div
           ref={projectsRef}
           className="pt-[150px] h-full text-white scroll-smooth slide-top view"
