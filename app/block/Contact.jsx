@@ -10,11 +10,11 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [captcha, setCaptcha] = useState(null);
-
+  const [isLoaded, setIsLoaded] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const loadIframe = () => setIsLoaded(true);
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -225,19 +225,23 @@ export default function Contact() {
           </div>
         </form>
 
-        <iframe
-          className=" w-[300px]  sm:w-[400px]"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7851.346875210554!2d123.93225619577319!3d10.28787435933086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99986352e5ba1%3A0xd07b40adbd217233!2sCanjulao%2C%20Lapu-Lapu%20City%2C%20Cebu!5e0!3m2!1sen!2sph!4v1738634240376!5m2!1sen!2sph"
-          width="400"
-          height="350"
-          style={{
-            border: "1px solid white",
-            filter: "grayscale(100%) invert(100%)",
-          }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-        />
+        <div className="" onMouseEnter={loadIframe}>
+          {isLoaded ? (
+            <iframe
+              className="w-[300px] sm:w-[400px] border-0 grayscale filter invert transition-all duration-300"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7851.346875210554!2d123.93225619577319!3d10.28787435933086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99986352e5ba1%3A0xd07b40adbd217233!2sCanjulao%2C%20Lapu-Lapu%20City%2C%20Cebu!5e0!3m2!1sen!2sph!4v1738634240376!5m2!1sen!2sph"
+              width="400"
+              height="350"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          ) : (
+            <div className="w-[300px] sm:w-[400px] bg-gray-200 h-[350px] flex items-center justify-center text-gray-500">
+              Loading Map...
+            </div>
+          )}
+        </div>
       </div>
 
       {showSuccess && (

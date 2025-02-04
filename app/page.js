@@ -2,13 +2,15 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
-import MyProject from "./block/MyProject";
-import Services from "./block/Services";
-import Contact from "./block/Contact";
-import Footer from "./block/Footer";
 import Link from "next/link";
-import DownloadApp from "./templates/Downloadapp.jsx";
-import Testblock from "./block/testblock.jsx";
+import dynamic from "next/dynamic";
+
+const MyProject = dynamic(() => import("./block/MyProject"));
+const Services = dynamic(() => import("./block/Services"));
+const Contact = dynamic(() => import("./block/Contact"));
+const Footer = dynamic(() => import("./block/Footer"));
+const Testblock = dynamic(() => import("./block/testblock"));
+const DownloadApp = dynamic(() => import("./templates/Downloadapp.jsx"));
 
 export default function Home() {
   const [scrollDirection, setScrollDirection] = useState("down");
@@ -66,7 +68,7 @@ export default function Home() {
 
   return (
     <div className="w-full h-full pt-[20px] bg-black">
-      <main className="container flex flex-col justify-center ">
+      <main className="container flex flex-col justify-center">
         {isLoading ? (
           <div className="w-[450px] sm:w-[450px] h-[250px] bg-gray-200 animate-pulse rounded"></div>
         ) : (
@@ -76,6 +78,7 @@ export default function Home() {
             alt="davelogo"
             width={450}
             height={38}
+            priority
           />
         )}
 
@@ -160,11 +163,12 @@ export default function Home() {
             priority
           />
         </div>
+
         <Testblock contactRef={contactRef} />
+
         <div className="pt-[150px] h-full text-white scroll-smooth slide-top view">
           <div className="blocked" ref={projectsRef}>
             <h1 className="font-bold text-2xl px-[35px] ">PROJECTS</h1>
-
             <MyProject />
           </div>
           <div className="blocked">
@@ -177,11 +181,12 @@ export default function Home() {
           </div>
         </div>
       </main>
+
       <DownloadApp />
       {showScrollButton && (
         <button
           onClick={handleScroll}
-          className="fixed bottom-4 right-4 p-3 bg-gray-700 text-white  rounded-full shadow-lg hover:bg-gray-600 text-3xl border-4 border-white hover:border-sky-500 transition-all duration-300"
+          className="fixed bottom-4 right-4 p-3 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-600 text-3xl border-4 border-white hover:border-sky-500 transition-all duration-300"
           aria-label={`Scroll ${scrollDirection}`}
         >
           {scrollDirection === "down" ? "⬇" : "⬆"}
