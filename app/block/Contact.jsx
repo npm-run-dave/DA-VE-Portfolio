@@ -53,9 +53,12 @@ export default function Contact() {
   };
 
   return (
-    <section className="py-8 px-4">
-      <div className="max-w-3xl mx-auto">
-        <form onSubmit={onSubmit} className="space-y-6">
+    <section className="py-8 px-4 container">
+      <div className="flex flex-col sm:flex-row justify-center items-center gap-[50px]">
+        <form
+          onSubmit={onSubmit}
+          className="space-y-6 w-full sm:w-[450px] max-w-full sm:max-w-[450px]"
+        >
           <div>
             <label
               htmlFor="name"
@@ -105,7 +108,7 @@ export default function Contact() {
             />
           </div>
 
-          <div className="">
+          <div>
             <ReCAPTCHA
               theme="dark"
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -131,95 +134,87 @@ export default function Contact() {
                     height="50"
                   >
                     <g>
-                      <g>
-                        <circle fill="#5bcde1" r="4" cy="50" cx="60">
-                          <animate
-                            begin="-0.67s"
-                            keyTimes="0;1"
-                            values="95;35"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            attributeName="cx"
-                          ></animate>
-                          <animate
-                            begin="-0.67s"
-                            keyTimes="0;0.2;1"
-                            values="0;1;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            attributeName="fill-opacity"
-                          ></animate>
-                        </circle>
-                        <circle fill="#5bcde1" r="4" cy="50" cx="60">
-                          <animate
-                            begin="-0.33s"
-                            keyTimes="0;1"
-                            values="95;35"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            attributeName="cx"
-                          ></animate>
-                          <animate
-                            begin="-0.33s"
-                            keyTimes="0;0.2;1"
-                            values="0;1;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            attributeName="fill-opacity"
-                          ></animate>
-                        </circle>
-                        <circle fill="#5bcde1" r="4" cy="50" cx="60">
-                          <animate
-                            begin="0s"
-                            keyTimes="0;1"
-                            values="95;35"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            attributeName="cx"
-                          ></animate>
-                          <animate
-                            begin="0s"
-                            keyTimes="0;0.2;1"
-                            values="0;1;1"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            attributeName="fill-opacity"
-                          ></animate>
-                        </circle>
-                      </g>
-                      <g transform="translate(-15 0)">
-                        <path
-                          transform="rotate(90 50 50)"
-                          fill="#576a8c"
-                          d="M50 50L20 50A30 30 0 0 0 80 50Z"
-                        ></path>
-                        <path
-                          fill="#576a8c"
-                          d="M50 50L20 50A30 30 0 0 0 80 50Z"
-                        >
-                          <animateTransform
-                            keyTimes="0;0.5;1"
-                            values="0 50 50;45 50 50;0 50 50"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            type="rotate"
-                            attributeName="transform"
-                          ></animateTransform>
-                        </path>
-                        <path
-                          fill="#576a8c"
-                          d="M50 50L20 50A30 30 0 0 1 80 50Z"
-                        >
-                          <animateTransform
-                            keyTimes="0;0.5;1"
-                            values="0 50 50;-45 50 50;0 50 50"
-                            dur="1s"
-                            repeatCount="indefinite"
-                            type="rotate"
-                            attributeName="transform"
-                          ></animateTransform>
-                        </path>
-                      </g>
+                      <circle fill="#5bcde1" r="4" cy="50" cx="60">
+                        <animate
+                          begin="-0.67s"
+                          keyTimes="0;1"
+                          values="95;35"
+                          dur="1s"
+                          repeatCount="indefinite"
+                          attributeName="cx"
+                        ></animate>
+                        <animate
+                          begin="-0.67s"
+                          keyTimes="0;0.2;1"
+                          values="0;1;1"
+                          dur="1s"
+                          repeatCount="indefinite"
+                          attributeName="fill-opacity"
+                        ></animate>
+                      </circle>
+                      <circle fill="#5bcde1" r="4" cy="50" cx="60">
+                        <animate
+                          begin="-0.33s"
+                          keyTimes="0;1"
+                          values="95;35"
+                          dur="1s"
+                          repeatCount="indefinite"
+                          attributeName="cx"
+                        ></animate>
+                        <animate
+                          begin="-0.33s"
+                          keyTimes="0;0.2;1"
+                          values="0;1;1"
+                          dur="1s"
+                          repeatCount="indefinite"
+                          attributeName="fill-opacity"
+                        ></animate>
+                      </circle>
+                      <circle fill="#5bcde1" r="4" cy="50" cx="60">
+                        <animate
+                          begin="0s"
+                          keyTimes="0;1"
+                          values="95;35"
+                          dur="1s"
+                          repeatCount="indefinite"
+                          attributeName="cx"
+                        ></animate>
+                        <animate
+                          begin="0s"
+                          keyTimes="0;0.2;1"
+                          values="0;1;1"
+                          dur="1s"
+                          repeatCount="indefinite"
+                          attributeName="fill-opacity"
+                        ></animate>
+                      </circle>
+                    </g>
+                    <g transform="translate(-15 0)">
+                      <path
+                        transform="rotate(90 50 50)"
+                        fill="#576a8c"
+                        d="M50 50L20 50A30 30 0 0 0 80 50Z"
+                      ></path>
+                      <path fill="#576a8c" d="M50 50L20 50A30 30 0 0 0 80 50Z">
+                        <animateTransform
+                          keyTimes="0;0.5;1"
+                          values="0 50 50;45 50 50;0 50 50"
+                          dur="1s"
+                          repeatCount="indefinite"
+                          type="rotate"
+                          attributeName="transform"
+                        ></animateTransform>
+                      </path>
+                      <path fill="#576a8c" d="M50 50L20 50A30 30 0 0 1 80 50Z">
+                        <animateTransform
+                          keyTimes="0;0.5;1"
+                          values="0 50 50;-45 50 50;0 50 50"
+                          dur="1s"
+                          repeatCount="indefinite"
+                          type="rotate"
+                          attributeName="transform"
+                        ></animateTransform>
+                      </path>
                     </g>
                   </svg>
                 </div>
@@ -229,6 +224,19 @@ export default function Contact() {
             </button>
           </div>
         </form>
+
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7851.346875210554!2d123.93225619577319!3d10.28787435933086!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99986352e5ba1%3A0xd07b40adbd217233!2sCanjulao%2C%20Lapu-Lapu%20City%2C%20Cebu!5e0!3m2!1sen!2sph!4v1738634240376!5m2!1sen!2sph"
+          width="400"
+          height="350"
+          style={{
+            border: "1px solid white",
+            filter: "grayscale(100%) invert(100%)",
+          }}
+          allowFullScreen=""
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        />
       </div>
 
       {showSuccess && (
