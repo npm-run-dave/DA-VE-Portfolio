@@ -3,9 +3,12 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Success from "../templates/Success";
-import ReCAPTCHA from "react-google-recaptcha";
+import dynamic from "next/dynamic";
 
 export default function Contact() {
+  const ReCAPTCHA = dynamic(() => import("react-google-recaptcha"), {
+    ssr: false,
+  });
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -49,9 +52,8 @@ export default function Contact() {
   };
 
   const onCaptchaChange = (value) => {
-    setCaptcha(value);
+    console.log("Captcha value:", value);
   };
-
   return (
     <section className="py-8 px-4 container">
       <div className="flex flex-col sm:flex-row justify-center items-center gap-[50px]">
