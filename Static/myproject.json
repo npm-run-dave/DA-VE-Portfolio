@@ -2,41 +2,49 @@
   {
     "title": "LenLen Birthing Home ",
     "image": "",
-    "description": "Lenlen Birthing Home is an Attendance Management System with Payroll integration. This is my capstone project."
+    "description": "Lenlen Birthing Home is an Attendance Management System with Payroll integration. This is my capstone project.",
+    "Link": ""
   },
   {
     "title": "Apple Accessories ",
     "image": "/AppleUi.jpg",
-    "description": "Discover premium Apple accessories that enhance and protect your Apple devices with style and functionality s"
+    "description": "Discover premium Apple accessories that enhance and protect your Apple devices with style and functionality s",
+    "link": ""
   },
   {
-    "title": "LenLen Birthing Home 2 ",
-    "image": "",
-    "description": "Lenlen Birthing Home is Attendance Management system with Payroll"
-  },
-  {
-    "title": "LenLen Birthing Home 3 ",
-    "image": "",
-    "description": "Lenlen Birthing Home is Attendance Management system with Payroll"
+    "title": "Instagram Clone ",
+    "image": "/Insta.png",
+    "description": "I created an Instagram clone that allows users to share photos and videos, follow others, like and comment on posts, and manage their profiles.",
+    "link": "https://instagram-clone-dave.vercel.app/"
   },
   {
     "title": "LenLen Birthing Home 3 ",
     "image": "",
-    "description": "Lenlen Birthing Home is Attendance Management system with Payroll"
+    "description": "Lenlen Birthing Home is Attendance Management system with Payroll",
+    "link": ""
   },
   {
     "title": "LenLen Birthing Home 3 ",
     "image": "",
-    "description": "Lenlen Birthing Home is Attendance Management system with Payroll"
+    "description": "Lenlen Birthing Home is Attendance Management system with Payroll",
+    "link": ""
   },
   {
     "title": "LenLen Birthing Home 3 ",
     "image": "",
-    "description": "Lenlen Birthing Home is Attendance Management system with Payroll"
+    "description": "Lenlen Birthing Home is Attendance Management system with Payroll",
+    "link": ""
   },
   {
     "title": "LenLen Birthing Home 3 ",
     "image": "",
-    "description": "Lenlen Birthing Home is Attendance Management system with Payroll"
+    "description": "Lenlen Birthing Home is Attendance Management system with Payroll",
+    "link": ""
+  },
+  {
+    "title": "LenLen Birthing Home 3 ",
+    "image": "",
+    "description": "Lenlen Birthing Home is Attendance Management system with Payroll",
+    "link": ""
   }
 ]
