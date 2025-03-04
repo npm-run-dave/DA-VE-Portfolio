@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import Techtacks from "@/app/block/Techtacks";
 
 const MyProject = dynamic(() => import("./block/MyProject"));
 const Services = dynamic(() => import("./block/Services"));
@@ -163,7 +164,7 @@ export default function Home() {
             priority
           />
         </div>
-
+        <Techtacks />
         <Testblock contactRef={contactRef} />
 
         <div className="pt-[150px] h-full text-white scroll-smooth slide-top view">
