@@ -61,10 +61,11 @@ html {
 .slider {
   box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.125);
   height: 100px;
-  margin: auto;
   overflow: hidden;
   position: relative;
-  width: 460px;
+  width: 360px;
+  margin-top: 20px;
+  margin-left: 50px;
 }
 
 .slider::before,
@@ -89,14 +90,14 @@ html {
 }
 
 .slide-track {
-  animation: scroll 40s linear infinite;
+  animation: scroll 20s linear infinite;
   display: flex;
-  width: calc(250px * 14);
+  width: calc(100px * 10);
 }
 
 .slide {
   height: 100px;
-  width: 200px;
+  width: 100px;
 }
 
 @keyframes scroll {
@@ -104,6 +105,6 @@ html {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-250px * 7));
+    transform: translateX(calc(-100px * 5));
   }
 }
