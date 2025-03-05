@@ -108,3 +108,11 @@ html {
     transform: translateX(calc(-100px * 5));
   }
 }
+
+@media (max-width: 768px) {
+  .slider {
+    width: 300px;
+    margin: 0;
+    padding-top: 40px;
+  }
+}
