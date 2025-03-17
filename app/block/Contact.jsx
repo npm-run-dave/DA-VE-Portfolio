@@ -71,7 +71,7 @@ export default function Contact() {
               onChange={(e) => setName(e.target.value)}
               type="text"
               id="name"
-              placeholder="Enter your Name"
+              placeholder=""
               className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-indigo-500"
             />
           </div>
