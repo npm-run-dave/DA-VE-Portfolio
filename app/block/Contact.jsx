@@ -93,7 +93,7 @@ export default function Contact() {
           </div>
           <div>
             <label
-              htmlFor="message"
+              htmlFor=""
               className="block text-sm font-medium text-gray-700"
             >
               Message:
