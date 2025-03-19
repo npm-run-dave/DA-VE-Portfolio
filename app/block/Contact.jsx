@@ -41,7 +41,7 @@ export default function Contact() {
         }, 3000);
       }
     } catch (err) {
-      console.log("Submit Error!", err);
+      console.log(" Error!", err);
       toast.error("Something went wrong, please try again later.");
     } finally {
       setIsLoading(false);
