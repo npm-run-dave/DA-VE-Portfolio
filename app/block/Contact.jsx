@@ -4,7 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Success from "../templates/Success";
 import ReCAPTCHA from "react-google-recaptcha";
-
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");

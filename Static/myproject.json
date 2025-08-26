@@ -1,9 +1,21 @@
 [
   {
-    "title": "",
-    "image": "",
-    "description": "",
-    "Link": ""
+    "title": "Instagram Clone ",
+    "description": "I created an Instagram clone that allows users to share photos and videos, follow others, like and comment on posts, and manage their profiles.",
+    "image": "/Insta.png",
+    "link": "https://instagram-clone-fawn-pi.vercel.app/",
+    "repo": "https://github.com/yourname/ecommerce",
+    "category": "Fullstack",
+    "tags": ["React", "Node.js", "MongoDB"]
+  },
+  {
+    "title": "City Di Mare ",
+    "description": "City di Mare in Cebu City is a master-planned community that fosters a complete modern live-work-play lifestyle cradied by nature.",
+    "image": "/Citydimare.png",
+    "link": "https://www.citydimare.com/",
+    "repo": "https://github.com/yourname/ecommerce",
+    "category": "Fullstack",
+    "tags": ["React", "Node.js", "MongoDB"]
   },
   {
     "title": "",
@@ -11,18 +23,7 @@
     "description": "",
     "link": ""
   },
-  {
-    "title": "Instagram Clone ",
-    "image": "/Insta.png",
-    "description": "I created an Instagram clone that allows users to share photos and videos, follow others, like and comment on posts, and manage their profiles.",
-    "link": "https://instagram-clone-fawn-pi.vercel.app/"
-  },
-  {
-    "title": "City Di Mare ",
-    "image": "/Citydimare.png",
-    "description": "City di Mare in Cebu City is a master-planned community that fosters a complete modern live-work-play lifestyle cradied by nature.",
-    "link": "https://www.citydimare.com/"
-  },
+
   {
     "title": "3 ",
     "image": "",

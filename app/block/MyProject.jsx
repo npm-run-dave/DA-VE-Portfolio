@@ -1,61 +1,115 @@
 import { useState } from "react";
 import myproject from "@/Static/myproject.json";
 import Image from "next/image";
+import { ExternalLink, Code } from "lucide-react";
+
+const categories = ["All", "Frontend", "Backend", "Fullstack"];
 
 export default function MyProject() {
+  const [selected, setSelected] = useState("All");
   const [showAll, setShowAll] = useState(false);
 
-  const displayedProjects = showAll ? myproject : myproject.slice(0, 6);
+  const filteredProjects =
+    selected === "All"
+      ? myproject
+      : myproject.filter((p) => p.category === selected);
+
+  const displayedProjects = showAll
+    ? filteredProjects
+    : filteredProjects.slice(0, 3);
 
   return (
-    <section className="p-8 min-h-screen">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+    <section className="px-4 py-10 min-h-screen bg-black text-white">
+      <div className="flex justify-center gap-4 mb-10 flex-wrap">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => {
+              setSelected(cat);
+              setShowAll(false); // reset on category change
+            }}
+            className={`px-4 py-1 rounded-full text-sm font-medium border ${
+              selected === cat
+                ? "bg-purple-600 text-white border-purple-600"
+                : "bg-gray-800 text-gray-300 border-gray-600"
+            } transition`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {displayedProjects.map((project, index) => (
           <div
             key={index}
-            className="relative bg-white rounded-lg shadow-lg overflow-hidden group hover:cursor-pointer"
+            className="bg-[#1f1f1f] rounded-xl shadow-md overflow-hidden hover:shadow-xl transition group"
           >
-            <div className="h-48 sm:h-56 md:h-64 lg:h-80 w-full bg-gray-500  flex justify-center items-center relative group-hover:opacity-50 shadow-lg group-hover:shadow-2xl group-hover:shadow-gray-900">
+            <div className="h-48 relative overflow-hidden">
               {project.image ? (
                 <Image
                   src={project.image}
                   alt={project.title}
                   width={500}
                   height={320}
-                  className="object-cover w-full h-full shadow-inner"
+                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
                 />
               ) : (
-                <span className="text-center text-gray-500 text-xs sm:text-sm">
-                  No Image Available..Coming soon
-                </span>
+                <div className="w-full h-full bg-gray-700 flex items-center justify-center text-sm text-gray-300">
+                  No Image
+                </div>
               )}
             </div>
 
-            <div className="absolute inset-0 bg-gray-900 bg-opacity-70 text-white p-4 sm:p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-              <h3 className="text-lg sm:text-xl font-semibold">
+            <div className="p-4 space-y-2">
+              <h3 className="font-semibold text-lg text-white">
                 {project.title}
               </h3>
-              <p className="mt-2 text-xs sm:text-sm md:text-base">
-                {project.description}
-              </p>
-              <a
-                href={project.link}
-                className="text-blue-400 hover:underline  block"
-              >
-                View Page
-              </a>
+              <p className="text-sm text-gray-400">{project.description}</p>
+
+              <div className="flex flex-wrap gap-2 mt-2">
+                {project?.tags?.map((tag, idx) => (
+                  <span
+                    key={idx}
+                    className="bg-purple-800 text-purple-200 text-xs px-2 py-1 rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-between pt-3 text-sm">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  className="text-purple-400 hover:underline flex items-center gap-1"
+                >
+                  <ExternalLink size={14} />
+                  Live Demo
+                </a>
+                {project.repo && (
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    className="text-gray-400 hover:text-white flex items-center gap-1"
+                  >
+                    <Code size={14} />
+                    Code
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      {myproject.length > 6 && (
-        <div className="flex justify-center mt-20">
+      {filteredProjects.length > 3 && (
+        <div className="mt-10 text-center">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="px-6 py-2 bg-black text-white border border-white rounded-lg hover:bg-gray-800 transition duration-300"
+            className="px-6 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-full transition"
           >
-            {showAll ? "See Less" : "See More"}
+            {showAll ? "Show Less" : "Show More"}
           </button>
         </div>
       )}
