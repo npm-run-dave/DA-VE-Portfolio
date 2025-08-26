@@ -44,157 +44,168 @@ export default async function handler(req, res) {
       const recipientMailOptions = {
         from: process.env.GMAIL_USER,
         to: process.env.RECIPIENT_EMAIL,
-        subject: "New Message from Contact Form",
+        subject: "📩 New Contact Form Submission",
         html: `
-        <html>
-        <head>
-          <style>
-            body {
-              font-family: 'Helvetica Neue', Arial, sans-serif;
-              margin: 0;
-              padding: 0;
-              background-color: #f7fafc;
-            }
-            .email-container {
-              background-color: #ffffff;
-              padding: 30px;
-              border-radius: 12px;
-              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-              max-width: 650px;
-              margin: 40px auto;
-            }
-            h2 {
-              color: #2b6cb0;
-              font-size: 24px;
-              margin-bottom: 20px;
-            }
-            p {
-              color: #4a5568;
-              font-size: 14px;
-              line-height: 1.6;
-            }
-            .message {
-              background-color: #edf2f7;
-              padding: 15px;
-              border-radius: 8px;
-              margin-top: 20px;
-              font-size: 14px;
-              white-space: pre-wrap;
-              word-wrap: break-word;
-            }
-            .footer {
-              font-size: 12px;
-              color: #a0aec0;
-              text-align: center;
-              margin-top: 30px;
-            }
-            .footer a {
-              color: #2b6cb0;
-              text-decoration: none;
-            }
-            .footer a:hover {
-              text-decoration: underline;
-            }
-            .header {
-              display: flex;
-              align-items: center;
-              background-color: #2b6cb0;
-              color: white;
-              padding: 15px;
-              font-size: 18px;
-              border-radius: 12px 12px 0 0;
-            }
-            .logo {
-              max-width: 50px;
-              margin-right: 15px;
-            }
-            .content p strong {
-              color: #2b6cb0;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="email-container">
-            <div class="header">
-              <img class="logo" src="https://example.com/path/to/your-logo.png" alt="Your Company Logo">
-              <span>You’ve Received a New Contact Form Message</span>
-            </div>
-            <div class="content">
-              <p><strong>From:</strong> ${name}</p>
-              <p><strong>Email:</strong> ${email}</p>
-              <div class="message">
-                <p><strong>Message:</strong></p>
-                <p>${sanitizedMessage}</p>
-              </div>
-            </div>
-          </div>
-          <div class="footer">
-            <p>This email was sent automatically from your website's contact form. <a href="#">Unsubscribe</a> if you no longer wish to receive these emails.</p>
-          </div>
-        </body>
-      </html>
-        `,
+  <html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: #f4f6f9;
+      }
+      .container {
+        max-width: 600px;
+        margin: 30px auto;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      }
+      .header {
+        background: linear-gradient(90deg, #2b6cb0, #3182ce);
+        color: #fff;
+        padding: 20px 30px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .header img {
+        max-width: 40px;
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+      .content {
+        padding: 30px;
+        color: #333;
+      }
+      .content p {
+        margin: 8px 0;
+        font-size: 15px;
+      }
+      .content strong {
+        color: #2b6cb0;
+      }
+      .message-box {
+        margin-top: 20px;
+        background: #f7fafc;
+        padding: 15px;
+        border-left: 4px solid #2b6cb0;
+        border-radius: 8px;
+        font-size: 14px;
+        white-space: pre-wrap;
+      }
+      .footer {
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #888;
+        background: #f9f9f9;
+      }
+      .footer a {
+        color: #2b6cb0;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <img src="https://img.icons8.com/color/48/000000/new-message.png" alt="logo"/> 
+        New Contact Form Submission
+      </div>
+      <div class="content">
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <div class="message-box">
+          ${sanitizedMessage}
+        </div>
+      </div>
+      <div class="footer">
+        <p>This email was generated automatically from your website’s contact form. <a href="#">Unsubscribe</a></p>
+      </div>
+    </div>
+  </body>
+  </html>
+  `,
       };
 
       await transporter.sendMail(recipientMailOptions);
 
       const userMailOptions = {
         from: process.env.GMAIL_USER,
-        to: email, // User's email
-        subject: "We've Received Your Message",
+        to: email,
+        subject: "✅ Thanks for Contacting Us!",
         html: `
-        <html>
-        <head>
-          <style>
-            body {
-              font-family: 'Helvetica Neue', Arial, sans-serif;
-              margin: 0;
-              padding: 0;
-              background-color: #f7fafc;
-            }
-            .email-container {
-              background-color: #ffffff;
-              padding: 30px;
-              border-radius: 12px;
-              box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-              max-width: 650px;
-              margin: 40px auto;
-            }
-            h2 {
-              color: #2b6cb0;
-              font-size: 24px;
-              margin-bottom: 20px;
-            }
-            p {
-              color: #4a5568;
-              font-size: 14px;
-              line-height: 1.6;
-            }
-            .footer {
-              font-size: 12px;
-              color: #a0aec0;
-              text-align: center;
-              margin-top: 30px;
-            }
-          </style>
-        </head>
-        <body>
-          <div class="email-container">
-            <h2>Thank You for Contacting Us!</h2>
-            <p>Hello ${name},</p>
-            <p>We have received your message and will get back to you as soon as possible.</p>
-            <p>Here's a copy of your message:</p>
-            <div class="message">
-              <p>${sanitizedMessage}</p>
-            </div>
-            <p>If you have any further questions, feel free to reply to this email.</p>
-            <div class="footer">
-              <p>This is an automated response. Please do not reply directly to this email.</p>
-            </div>
-          </div>
-        </body>
-      </html>
-        `,
+  <html>
+  <head>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Segoe UI", Tahoma, sans-serif;
+        background: #f4f6f9;
+      }
+      .container {
+        max-width: 600px;
+        margin: 30px auto;
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+      }
+      .header {
+        background: linear-gradient(90deg, #2b6cb0, #3182ce);
+        color: #fff;
+        padding: 20px 30px;
+        font-size: 20px;
+        font-weight: bold;
+        text-align: center;
+      }
+      .content {
+        padding: 30px;
+        color: #333;
+      }
+      .content p {
+        font-size: 15px;
+        margin: 10px 0;
+      }
+      .message-box {
+        margin: 20px 0;
+        background: #edf2f7;
+        padding: 15px;
+        border-left: 4px solid #2b6cb0;
+        border-radius: 8px;
+        font-size: 14px;
+        white-space: pre-wrap;
+      }
+      .footer {
+        padding: 15px;
+        text-align: center;
+        font-size: 12px;
+        color: #888;
+        background: #f9f9f9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">Thank You for Contacting Us</div>
+      <div class="content">
+        <p>Hi <strong>${name}</strong>,</p>
+        <p>We’ve received your message and will reply shortly. Here’s a copy of what you sent:</p>
+        <div class="message-box">
+          ${sanitizedMessage}
+        </div>
+        <p>Feel free to reply to this email if you’d like to add more details.</p>
+      </div>
+      <div class="footer">
+        <p>This is an automated response. Please do not reply directly to this email.</p>
+      </div>
+    </div>
+  </body>
+  </html>
+  `,
       };
 
       await transporter.sendMail(userMailOptions);
