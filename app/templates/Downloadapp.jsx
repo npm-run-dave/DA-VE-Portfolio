@@ -85,9 +85,7 @@ export default function Downloadapp() {
                   />
                 </g>
               </svg>
-              <span className="absolute bottom-[-5px] left-[100px] transform -translate-x-1/2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-[14px]">
-                Download App?
-              </span>
+              
             </button>
           </div>
         )}
