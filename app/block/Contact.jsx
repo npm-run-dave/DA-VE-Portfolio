@@ -71,7 +71,7 @@ export default function Contact() {
               type="text"
               id="name"
               placeholder="Enter your Name"
-              className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-indigo-500"
+              className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#54c2a3] text-[#54c2a3]"
             />
           </div>
           <div>
@@ -87,7 +87,7 @@ export default function Contact() {
               type="email"
               id="email"
               placeholder="Enter your Email"
-              className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-indigo-500"
+              className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#54c2a3]"
             />
           </div>
           <div>
@@ -103,7 +103,7 @@ export default function Contact() {
               id="message"
               placeholder="Send your message"
               rows="4"
-              className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-indigo-500"
+              className="mt-1 block w-full bg-transparent border-b-2 border-gray-300 focus:outline-none focus:border-[#54c2a3]"
             />
           </div>
 
@@ -120,7 +120,7 @@ export default function Contact() {
           <div className="flex justify-center">
             <button
               type="submit"
-              className="w-full sm:w-auto py-2 px-6 bg-black border text-white font-semibold rounded-lg shadow-md hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-indigo-500 transform transition-all duration-200 ease-in-out"
+              className="w-full sm:w-auto py-2 px-6 bg-black border text-white font-semibold rounded-lg shadow-md hover:bg-[#225043] focus:outline-none focus:ring-2 focus:ring-indigo-500 transform transition-all duration-200 ease-in-out"
               disabled={isLoading}
             >
               {isLoading ? (

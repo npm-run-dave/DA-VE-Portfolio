@@ -30,7 +30,7 @@ export default function MyProject() {
             }}
             className={`px-4 py-1 rounded-full text-sm font-medium border ${
               selected === cat
-                ? "bg-purple-600 text-white border-purple-600"
+                ? "bg-[#225043] text-white border-white"
                 : "bg-gray-800 text-gray-300 border-gray-600"
             } transition`}
           >
@@ -71,7 +71,7 @@ export default function MyProject() {
                 {project?.tags?.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="bg-purple-800 text-purple-200 text-xs px-2 py-1 rounded-full"
+                    className="bg-[#225043] text-purple-200 text-xs px-2 py-1 rounded-full"
                   >
                     {tag}
                   </span>
@@ -82,21 +82,12 @@ export default function MyProject() {
                 <a
                   href={project.link}
                   target="_blank"
-                  className="text-purple-400 hover:underline flex items-center gap-1"
+                  className="text-[#54c2a3] hover:underline flex items-center gap-1"
                 >
                   <ExternalLink size={14} />
                   Live Demo
                 </a>
-                {project.repo && (
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    className="text-gray-400 hover:text-white flex items-center gap-1"
-                  >
-                    <Code size={14} />
-                    Code
-                  </a>
-                )}
+                 
               </div>
             </div>
           </div>
@@ -107,7 +98,7 @@ export default function MyProject() {
         <div className="mt-10 text-center">
           <button
             onClick={() => setShowAll(!showAll)}
-            className="px-6 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-full transition"
+            className="px-6 py-2 bg-[#225043] hover:bg-[#143028] text-white rounded-full transition"
           >
             {showAll ? "Show Less" : "Show More"}
           </button>

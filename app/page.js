@@ -120,7 +120,7 @@ export default function Home() {
             priority
           />
 
-          <ol className="list-inside text-sm px-[10px] sm:px-[20px] text-center sm:text-left font-[family-name:var(--font-geist-mono)] min-h-[150px]">
+          <ol className="list-inside text-sm px-[10px] sm:px-[55px] text-center sm:text-left font-[family-name:var(--font-geist-mono)] min-h-[150px]">
             <li className="mb-4 sm:mb-2">
               <span className="text-blue-500 text-[18px] sm:text-[20px] md:text-[40px] lg:text-3xl">
                 <Typewriter
@@ -142,7 +142,7 @@ export default function Home() {
             </li>
           </ol>
 
-          <div className="flex gap-4 items-center flex-col sm:flex-row pt-[45px] px-[25px]">
+          <div className="flex gap-4 items-center flex-col sm:flex-row pt-[45px] px-[25px] sm:px-[55px]">
             <Link
               href="#"
               className="rounded-full border border-solid border-white transition-colors flex items-center justify-center text-white gap-2 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 hover:bg-white/10"
@@ -167,7 +167,7 @@ export default function Home() {
             </Link>
           </div>
 
-          <div className="flex gap-2 pt-[20px] px-[70px] justify-center sm:justify-start">
+          <div className="flex gap-2 pt-[20px] px-[70px] justify-center sm:justify-start sm:px-[55px] sm:pt-[35px]">
             <Link href="#" className="h-[40px] w-[40px] transition-transform hover:scale-110">
               <Image
                 className="rounded-lg cursor-pointer h-[39px] w-[39px] object-fill"
@@ -207,10 +207,6 @@ export default function Home() {
           <Techtacks />
         </Suspense>
         
-        <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading content...</div>}>
-          <Testblock contactRef={contactRef} />
-        </Suspense>
-
         <div className="pt-[150px] h-full text-white scroll-smooth slide-top view">
           <div className="blocked" ref={projectsRef} id="projects">
             <h1 className="font-bold text-2xl px-[35px] ">PROJECTS</h1>

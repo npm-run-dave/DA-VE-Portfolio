@@ -6,7 +6,7 @@
     "link": "https://instagram-clone-fawn-pi.vercel.app/",
     "repo": "https://github.com/yourname/ecommerce",
     "category": "Fullstack",
-    "tags": ["React", "Node.js", "MongoDB"]
+    "tags": ["Nextjs", "Node.js" ]
   },
   {
     "title": "City Di Mare ",
@@ -15,13 +15,14 @@
     "link": "https://www.citydimare.com/",
     "repo": "https://github.com/yourname/ecommerce",
     "category": "Fullstack",
-    "tags": ["React", "Node.js", "MongoDB"]
+    "tags": ["Nextjs", "Node.js", "tailwindcss" ]
   },
   {
     "title": "",
     "image": "",
     "description": "",
     "link": ""
+    
   },
 
   {
