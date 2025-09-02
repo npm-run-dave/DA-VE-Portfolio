@@ -104,7 +104,7 @@ export default function Home() {
           {/* Intro */}
           <ol className="list-inside text-sm px-[10px] sm:px-[55px] text-center sm:text-left font-[family-name:var(--font-geist-mono)] min-h-[150px]">
             <li className="mb-4 sm:mb-2">
-              <span className="text-blue-500 text-[18px] sm:text-[20px] md:text-[40px] lg:text-3xl">
+              <span className="text-[#DCFAF4] text-[18px] sm:text-[20px] md:text-[40px] lg:text-3xl">
                 <Typewriter
                   words={["Hi, I'm Dave"]}
                   loop={false}
