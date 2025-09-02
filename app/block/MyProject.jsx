@@ -19,7 +19,7 @@ export default function MyProject() {
     : filteredProjects.slice(0, 3);
 
   return (
-    <section className="px-4 py-10 min-h-screen bg-black text-white">
+    <section className="px-4 py-10  bg-black text-white">
       <div className="flex justify-center gap-4 mb-10 flex-wrap">
         {categories.map((cat) => (
           <button

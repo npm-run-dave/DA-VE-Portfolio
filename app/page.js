@@ -1,41 +1,27 @@
 "use client";
-import { useEffect, useState, useRef, Suspense } from "react";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
 import Link from "next/link";
-import dynamic from "next/dynamic";
-import Techtacks from "@/app/block/Techtacks";
 
-// Lazy load components with proper loading states
-const MyProject = dynamic(() => import("./block/MyProject"), {
-  loading: () => <div className="h-96 flex items-center justify-center">Loading projects...</div>
-});
-const Services = dynamic(() => import("./block/Services"), {
-  loading: () => <div className="h-96 flex items-center justify-center">Loading services...</div>
-});
-const Contact = dynamic(() => import("./block/Contact"), {
-  loading: () => <div className="h-96 flex items-center justify-center">Loading contact...</div>
-});
-const Footer = dynamic(() => import("./block/Footer"), {
-  loading: () => <div className="h-40 flex items-center justify-center">Loading footer...</div>
-});
-const Testblock = dynamic(() => import("./block/testblock"), {
-  loading: () => <div className="h-96 flex items-center justify-center">Loading content...</div>
-});
-const DownloadApp = dynamic(() => import("./templates/Downloadapp.jsx"), {
-  loading: () => <div className="h-96 flex items-center justify-center">Loading app...</div>
-});
+// Direct imports instead of dynamic
+import Techtacks from "./block/Techtacks";
+import MyProject from "./block/MyProject";
+import Services from "./block/Services";
+import Contact from "./block/Contact";
+import Footer from "./block/Footer";
+import DownloadApp from "./templates/Downloadapp";
+import Experience from "./block/Experience";
 
-// Loading component for initial load
 const LoadingScreen = () => (
   <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
     <div className="relative">
       <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
-      <Image 
-        src="/LOGO.png" 
-        alt="Loading" 
-        width={80} 
-        height={80} 
+      <Image
+        src="/LOGO.png"
+        alt="Loading"
+        width={80}
+        height={80}
         className="absolute inset-0 m-auto"
         priority
       />
@@ -59,17 +45,17 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      // Determine scroll direction
+
+      // Detect direction
       if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
         setScrollDirection("down");
       } else if (currentScrollY < lastScrollY.current && currentScrollY > 50) {
         setScrollDirection("up");
       }
-      
-      // Show/hide scroll button
+
+      // Show/hide button
       setShowScrollButton(currentScrollY > 300);
-      
+
       lastScrollY.current = currentScrollY;
     };
 
@@ -87,30 +73,25 @@ export default function Home() {
 
   const scrollToProjects = (e) => {
     e.preventDefault();
-    if (projectsRef.current) {
-      projectsRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    projectsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const scrollContact = (e) => {
     e.preventDefault();
-    if (contactRef.current) {
-      contactRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
+    contactRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
     <div className="w-full h-full pt-[20px] bg-black">
       {isLoading && <LoadingScreen />}
-      
+
       <main className="container flex flex-col justify-center">
-        <div className={`transition-opacity duration-700 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+        <div
+          className={`transition-opacity duration-700 ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          {/* Logo */}
           <Image
             className="mx-auto sm:mx-0"
             src="/LOGO.png"
@@ -120,6 +101,7 @@ export default function Home() {
             priority
           />
 
+          {/* Intro */}
           <ol className="list-inside text-sm px-[10px] sm:px-[55px] text-center sm:text-left font-[family-name:var(--font-geist-mono)] min-h-[150px]">
             <li className="mb-4 sm:mb-2">
               <span className="text-blue-500 text-[18px] sm:text-[20px] md:text-[40px] lg:text-3xl">
@@ -131,24 +113,24 @@ export default function Home() {
                   typeSpeed={70}
                 />
               </span>
-
               <div className="text-[12px] sm:text-[15px] md:text-[20px] lg:text-2xl text-white mt-2 sm:mt-4">
                 a passionate web developer specializing in crafting dynamic and
-                responsive websites using modern frameworks like Vue.js, Next.js,
-                and Express.js. With expertise in integrating CMS platforms and
-                creating user-friendly interfaces, I build efficient and scalable
-                solutions to bring ideas to life.
+                responsive websites using modern frameworks like Vue.js,
+                Next.js, and Express.js. With expertise in integrating CMS
+                platforms and creating user-friendly interfaces, I build
+                efficient and scalable solutions to bring ideas to life.
               </div>
             </li>
           </ol>
 
+          {/* Buttons */}
           <div className="flex gap-4 items-center flex-col sm:flex-row pt-[45px] px-[25px] sm:px-[55px]">
             <Link
               href="#"
               className="rounded-full border border-solid border-white transition-colors flex items-center justify-center text-white gap-2 text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 hover:bg-white/10"
             >
               <Image
-                alt="Vercel logomark"
+                alt="cv"
                 src="/LOGO.png"
                 width={20}
                 height={20}
@@ -167,73 +149,69 @@ export default function Home() {
             </Link>
           </div>
 
+          {/* Social links */}
           <div className="flex gap-2 pt-[20px] px-[70px] justify-center sm:justify-start sm:px-[55px] sm:pt-[35px]">
-            <Link href="#" className="h-[40px] w-[40px] transition-transform hover:scale-110">
+            <Link href="#" className="h-[40px] w-[40px] hover:scale-110">
               <Image
-                className="rounded-lg cursor-pointer h-[39px] w-[39px] object-fill"
+                className="rounded-lg cursor-pointer object-fill"
                 src="/Github.png"
                 alt="Github"
-                width={35}
-                height={30}
+                width={39}
+                height={39}
                 loading="lazy"
               />
             </Link>
-
-            <Link href="#" className="h-[40px] w-[40px] transition-transform hover:scale-110">
+            <Link href="#" className="h-[40px] w-[40px] hover:scale-110">
               <Image
-                className="rounded-lg cursor-pointer h-[38px] w-[38px] object-fill"
+                className="rounded-lg cursor-pointer object-fill"
                 src="/Linkin.png"
                 alt="LinkedIn"
-                width={35}
-                height={30}
+                width={38}
+                height={38}
                 loading="lazy"
               />
             </Link>
-            
-            <Link href="#" className="h-[40px] w-[40px] transition-transform hover:scale-110">
+            <Link href="#" className="h-[40px] w-[40px] hover:scale-110">
               <Image
-                className="rounded-lg cursor-pointer h-[38px] w-[38px] object-fill"
+                className="rounded-lg cursor-pointer object-fill"
                 src="/Facebook.png"
                 alt="Facebook"
-                width={35}
-                height={30}
+                width={38}
+                height={38}
                 loading="lazy"
               />
             </Link>
           </div>
         </div>
 
-        <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading tech stack...</div>}>
-          <Techtacks />
-        </Suspense>
-        
-        <div className="pt-[150px] h-full text-white scroll-smooth slide-top view">
+        {/* Tech stack */}
+        <Techtacks />
+
+        {/* Sections */}
+        <div className="pt-[150px] h-full text-white scroll-smooth">
           <div className="blocked" ref={projectsRef} id="projects">
-            <h1 className="font-bold text-2xl px-[35px] ">PROJECTS</h1>
-            <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading projects...</div>}>
-              <MyProject />
-            </Suspense>
+            <h1 className="font-bold text-2xl px-[35px]">PROJECTS</h1>
+            <MyProject />
           </div>
-          
+
           <div className="blocked">
-            <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading services...</div>}>
-              <Services />
-            </Suspense>
+            <Services />
           </div>
-          
+
+          <div className="blocked">
+            <Experience />
+          </div>
+
           <div className="blocked" ref={contactRef}>
             <h1 className="font-bold text-2xl px-[35px] mt-20">CONTACT</h1>
-            <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading contact form...</div>}>
-              <Contact />
-            </Suspense>
+            <Contact />
           </div>
         </div>
       </main>
 
-      <Suspense fallback={<div className="h-96 flex items-center justify-center">Loading app...</div>}>
-        <DownloadApp />
-      </Suspense>
-      
+      <DownloadApp />
+
+      {/* Scroll button */}
       {showScrollButton && (
         <button
           onClick={handleScroll}
@@ -243,10 +221,8 @@ export default function Home() {
           {scrollDirection === "down" ? "⬇" : "⬆"}
         </button>
       )}
-      
-      <Suspense fallback={<div className="h-40 flex items-center justify-center">Loading footer...</div>}>
-        <Footer />
-      </Suspense>
+
+      <Footer />
     </div>
   );
 }

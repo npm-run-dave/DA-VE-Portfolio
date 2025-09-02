@@ -1,0 +1,44 @@
+{
+  "education": [
+    {
+      "degree": "Information and Communication Technology (ICT) ",
+      "school": "Babag National High School",
+      "years": "2017 – 2019"
+    },
+    {
+      "degree": "Bachelor of Science in Information Technology (BSIT)",
+      "school": "Cordova Public College",
+      "years": "2021 – 2025"
+    }
+  ],
+
+  "experiences": [
+    {
+      "role": "Internship as a Web Developer",
+      "company": "Halcyon Digital Inc.",
+      "years": "2024 – 2025",
+      "description": "Assisted in building responsive websites, debugged code issues, and supported senior developers in delivering client projects."
+    },
+    {
+      "role": "Junior Web Developer",
+      "company": "Agile Web Works Inc.",
+      "years": "2025 – Present",
+      "description": "Developing and maintaining web applications using modern frameworks, collaborating in Agile sprints, and ensuring code quality through testing and reviews."
+    }
+  ],
+
+  "references": [
+    {
+      "name": "Diome Nike Putot",
+      "position": "Teamlead , Halcyon Digital Inc.",
+      "email": "Diomenike@example.com",
+      "phone": "+63 234 567 890"
+    },
+    {
+      "name": "Nicasio Amoin",
+      "position": "BSIT Instructor, Lorem Ipsum Ltd",
+      "email": "nick@example.com",
+      "phone": "+63 987 654 321"
+    }
+  ]
+}
