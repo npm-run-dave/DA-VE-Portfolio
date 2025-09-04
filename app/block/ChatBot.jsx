@@ -6,12 +6,18 @@ export default function ChatBot() {
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
-  const [mode] = useState("flash"); // flash = fast, pro = smart
+  const [mode] = useState("flash");
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
+  const suggestions = [
+    "Show me Dave’s projects",
+    "Tell me his experiences",
+    "What are his social links?"
+  ];
 
-    const newMessages = [...messages, { role: "user", text: input }];
+  const sendMessage = async (text = input) => {
+    if (!text.trim()) return;
+
+    const newMessages = [...messages, { role: "user", text }];
     setMessages(newMessages);
     setInput("");
 
@@ -19,7 +25,7 @@ export default function ChatBot() {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input, mode }),
+        body: JSON.stringify({ message: text, mode }),
       });
 
       const data = await res.json();
@@ -38,7 +44,7 @@ export default function ChatBot() {
   };
 
   return (
-    <div className="fixed bottom-[25px] right-[120px] z-50">
+    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-[25px] md:right-[120px] z-50">
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
@@ -49,7 +55,8 @@ export default function ChatBot() {
       )}
 
       {isOpen && (
-        <div className="w-80 h-96 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-slide-up">
+        <div className="w-[90vw] max-w-sm h-[70vh] sm:h-96 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-slide-up">
+          {/* Header */}
           <div className="flex justify-between items-center p-4 bg-white/10 backdrop-blur-md border-b border-white/20">
             <h2 className="font-semibold text-lg">💬 Dave AI Assistant</h2>
             <button
@@ -60,8 +67,7 @@ export default function ChatBot() {
             </button>
           </div>
 
-         
-
+          {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-3 glass-scrollbar">
             {messages.map((msg, i) => (
               <div
@@ -83,16 +89,32 @@ export default function ChatBot() {
             ))}
           </div>
 
+          {/* Suggestions */}
+          {messages.length === 0 && (
+            <div className="p-3 flex flex-wrap gap-2 border-t border-white/20 bg-white/5 backdrop-blur-sm">
+              {suggestions.map((s, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => sendMessage(s)}
+                  className="px-3 py-1 text-xs rounded-full bg-white/20 text-white hover:bg-white/30 transition"
+                >
+                  {s}
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* Input */}
           <div className="flex items-center border-t border-white/20 bg-white/10 backdrop-blur-md p-2">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && sendMessage()}
-              className="flex-1 px-3 py-2 rounded-lg bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
+              className="flex-1 px-3 py-2 rounded-lg bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 text-sm sm:text-base"
               placeholder="Type a message..."
             />
             <button
-              onClick={sendMessage}
+              onClick={() => sendMessage()}
               className="ml-2 p-2 rounded-lg bg-gradient-to-r from-green-500 to-blue-600 hover:opacity-90 transition duration-200"
             >
               <Send size={18} />
