@@ -215,7 +215,7 @@ export default function Home() {
       {showScrollButton && (
         <button
           onClick={handleScroll}
-          className="fixed bottom-6 z-[100] right-6 p-3 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-600 text-3xl border-4 border-white hover:border-sky-500 transition-all duration-300 backdrop-blur-sm"
+          className="fixed bottom-6 z-[100] right-6 p-3 bg-gray-700 text-white rounded-full shadow-lg hover:bg-gray-600 text-[15px] border-4 border-white hover:border-sky-500 transition-all duration-300 backdrop-blur-sm"
           aria-label={`Scroll ${scrollDirection}`}
         >
           {scrollDirection === "down" ? "⬇" : "⬆"}

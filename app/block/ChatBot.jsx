@@ -11,7 +11,7 @@ export default function ChatBot() {
   const suggestions = [
     "Show me Dave’s projects",
     "Tell me his experiences",
-    "What are his social links?"
+    "What are his social links?",
   ];
 
   const sendMessage = async (text = input) => {
@@ -44,18 +44,20 @@ export default function ChatBot() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 md:bottom-[25px] md:right-[120px] z-50">
+    <div className="fixed bottom-[25px] right-[80px] sm:bottom-6 sm:right-6 md:bottom-[25px] md:right-[120px] z-50">
+      {/* Floating Button */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="p-4 rounded-full bg-gradient-to-r from-green-500 to-blue-600 text-white shadow-lg hover:scale-110 transform transition duration-300"
+          className="p-[10px] rounded-full bg-gradient-to-r from-green-500 to-blue-600 text-white shadow-lg hover:scale-110 transform transition duration-300"
         >
           <MessageCircle size={26} />
         </button>
       )}
 
+      {/* Chat Window */}
       {isOpen && (
-        <div className="w-[90vw] max-w-sm h-[70vh] sm:h-96 bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-slide-up">
+        <div className="w-[90vw] max-w-[300px] h-[70vh] sm:max-w-[360px] sm:h-[70vh] md:max-w-[420px] md:h-[75vh] lg:max-w-[460px] lg:h-[75vh] xl:max-w-[500px] xl:h-[80vh] bg-white/10 backdrop-blur-xl border border-white/20 text-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-slide-up">
           {/* Header */}
           <div className="flex justify-between items-center p-4 bg-white/10 backdrop-blur-md border-b border-white/20">
             <h2 className="font-semibold text-lg">💬 Dave AI Assistant</h2>
@@ -123,6 +125,7 @@ export default function ChatBot() {
         </div>
       )}
 
+      {/* Animations + Scrollbar Styles */}
       <style jsx>{`
         .animate-slide-up {
           animation: slideUp 0.3s ease-out;
