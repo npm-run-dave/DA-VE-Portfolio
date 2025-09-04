@@ -12,7 +12,7 @@ import Contact from "./block/Contact";
 import Footer from "./block/Footer";
 import DownloadApp from "./templates/Downloadapp";
 import Experience from "./block/Experience";
-
+import ChatBot from "./block/ChatBot";
 const LoadingScreen = () => (
   <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
     <div className="relative">
@@ -193,7 +193,7 @@ export default function Home() {
             <h1 className="font-bold text-2xl text-center px-[35px]">PROJECTS</h1>
             <MyProject />
           </div>
-
+          <ChatBot />
           <div className="blocked">
             <Services />
           </div>
