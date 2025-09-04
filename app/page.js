@@ -189,7 +189,7 @@ export default function Home() {
 
         {/* Sections */}
         <div className="pt-[150px] h-full text-white scroll-smooth">
-          <div className="blocked" ref={projectsRef} id="projects">
+          <div className="blocked text-center" ref={projectsRef} id="projects">
             <h1 className="font-bold text-2xl px-[35px]">PROJECTS</h1>
             <MyProject />
           </div>
@@ -202,7 +202,7 @@ export default function Home() {
             <Experience />
           </div>
 
-          <div className="blocked" ref={contactRef}>
+          <div className="blocked text-center" ref={contactRef}>
             <h1 className="font-bold text-2xl px-[35px] mt-20">CONTACT</h1>
             <Contact />
           </div>
