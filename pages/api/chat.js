@@ -4,6 +4,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import experiences from "../../Static/experience.json";
 import projects from "../../Static/myproject.json";
 import socialLinks from "../../Static/SocialLinks.json";
+import services from "../../Static/services.json"; // ⬅️ new import
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -28,7 +29,7 @@ export default async function handler(req, res) {
       "projects",
       "project",
       "portfolio",
-      "services",
+      "services", // ⬅️ services included here
       "skills",
       "social",
       "github",
@@ -37,7 +38,6 @@ export default async function handler(req, res) {
       "references",
     ];
 
-    // ✅ Greetings
     const greetings = ["hi", "hello", "hey", "good morning", "good evening"];
 
     const lowerMsg = message.toLowerCase();
@@ -54,14 +54,13 @@ export default async function handler(req, res) {
     let prompt;
 
     if (isGreeting) {
-      // ✅ Always allow greetings
       prompt = `The user said "${message}". 
-Reply warmly as Dave's portfolio assistant and invite them to ask about his projects, experiences, or social links.`;
+Reply warmly as Dave's portfolio assistant and invite them to ask about his projects, experiences, services, or social links.`;
     } else if (isPortfolioRelated) {
-      // ✅ Always answer strictly from JSON portfolio data
       const portfolioData = {
         experiences,
         projects,
+        services, 
         socialLinks,
       };
 
@@ -77,16 +76,16 @@ Rules:
 - Always respond directly with the relevant data.
 - Be concise and professional.
 - If asked about projects, list them from the portfolio.
+- If asked about services, list them clearly with icons and descriptions.
 - Do not say "I can't answer"; always provide the relevant info.
       `;
     } else {
-      // ✅ Polite redirect for unrelated stuff
       prompt = `
 The user asked: "${message}".
 
 This is NOT related to Dave's portfolio. 
 Reply politely and guide them back, e.g.:
-"I'm here to help you learn about Dave's portfolio. Could you ask about his experiences, projects, or social links?"
+"I'm here to help you learn about Dave's portfolio. Could you ask about his experiences, projects, services, or social links?"
       `;
     }
 

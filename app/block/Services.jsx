@@ -10,6 +10,18 @@ import {
   LayersIcon,
 } from "lucide-react";
 
+import servicesData from "@/Static/services.json";
+
+// Map string names in JSON → actual Lucide icons
+const icons = {
+  CodeIcon,
+  PenToolIcon,
+  BrushIcon,
+  BarChartIcon,
+  MonitorIcon,
+  LayersIcon,
+};
+
 const ServiceCard = ({ icon, title, description, delay = 0 }) => {
   const card = useScrollAnimation(0.2);
 
@@ -37,51 +49,6 @@ const ServiceCard = ({ icon, title, description, delay = 0 }) => {
 const Services = () => {
   const title = useScrollAnimation(0.1);
 
-  const services = [
-    {
-      icon: <CodeIcon size={28} className="text-[#81fad8]" />,
-      title: "Website Development",
-      description:
-        "Custom, responsive websites built with modern technologies that provide exceptional user experiences across all devices.",
-      delay: 0,
-    },
-    {
-      icon: <PenToolIcon size={28} className="text-[#81fad8]" />,
-      title: "UI/UX Design",
-      description:
-        "User-centered design that balances beautiful interfaces with seamless functionality to engage your audience.",
-      delay: 100,
-    },
-    {
-      icon: <BrushIcon size={28} className="text-[#81fad8]" />,
-      title: "Branding & Logo Design",
-      description:
-        "Distinctive brand identity and logo design that communicates your company's values and resonates with your target audience.",
-      delay: 200,
-    },
-    {
-      icon: <BarChartIcon size={28} className="text-[#81fad8]" />,
-      title: "Performance Optimization",
-      description:
-        "Speed up your website, improve SEO rankings, and enhance user experience through technical optimization.",
-      delay: 300,
-    },
-    {
-      icon: <MonitorIcon size={28} className="text-[#81fad8]" />,
-      title: "Responsive Design",
-      description:
-        "Ensure your website looks and functions perfectly on all devices, from desktops to smartphones.",
-      delay: 400,
-    },
-    {
-      icon: <LayersIcon size={28} className="text-[#81fad8]" />,
-      title: "Web Application Development",
-      description:
-        "Custom web applications with complex functionality tailored to your specific business needs.",
-      delay: 500,
-    },
-  ];
-
   return (
     <section
       id="services"
@@ -104,15 +71,18 @@ const Services = () => {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <ServiceCard
-              key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              delay={service.delay}
-            />
-          ))}
+          {servicesData.map((service, index) => {
+            const Icon = icons[service.icon];
+            return (
+              <ServiceCard
+                key={index}
+                icon={<Icon size={28} className="text-[#81fad8]" />}
+                title={service.title}
+                description={service.description}
+                delay={service.delay}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

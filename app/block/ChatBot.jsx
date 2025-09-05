@@ -11,9 +11,8 @@ export default function ChatBot() {
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const buttonRef = useRef(null);
-  const buttonSize = 46; // Width/height of the button
+  const buttonSize = 46; 
 
-  // Initialize position based on screen size
   useEffect(() => {
     const updatePosition = () => {
       if (typeof window !== "undefined") {
@@ -46,7 +45,6 @@ export default function ChatBot() {
     };
   }, []);
 
-  /** 🖱️ Mouse Handlers **/
   const handleMouseDown = (e) => {
     if (buttonRef.current && !isOpen) {
       setIsDragging(true);
@@ -75,7 +73,6 @@ export default function ChatBot() {
     setIsDragging(false);
   };
 
-  /** 📱 Touch Handlers **/
   const handleTouchStart = (e) => {
     if (buttonRef.current && !isOpen) {
       setIsDragging(true);
@@ -106,7 +103,6 @@ export default function ChatBot() {
     setIsDragging(false);
   };
 
-  /** 🌀 Attach Events **/
   useEffect(() => {
     if (isDragging) {
       window.addEventListener("mousemove", handleMouseMove);

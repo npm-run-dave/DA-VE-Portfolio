@@ -1,0 +1,38 @@
+[
+  {
+    "icon": "CodeIcon",
+    "title": "Website Development",
+    "description": "Custom, responsive websites built with modern technologies that provide exceptional user experiences across all devices.",
+    "delay": 0
+  },
+  {
+    "icon": "PenToolIcon",
+    "title": "UI/UX Design",
+    "description": "User-centered design that balances beautiful interfaces with seamless functionality to engage your audience.",
+    "delay": 100
+  },
+  {
+    "icon": "BrushIcon",
+    "title": "Branding & Logo Design",
+    "description": "Distinctive brand identity and logo design that communicates your company's values and resonates with your target audience.",
+    "delay": 200
+  },
+  {
+    "icon": "BarChartIcon",
+    "title": "Performance Optimization",
+    "description": "Speed up your website, improve SEO rankings, and enhance user experience through technical optimization.",
+    "delay": 300
+  },
+  {
+    "icon": "MonitorIcon",
+    "title": "Responsive Design",
+    "description": "Ensure your website looks and functions perfectly on all devices, from desktops to smartphones.",
+    "delay": 400
+  },
+  {
+    "icon": "LayersIcon",
+    "title": "Web Application Development",
+    "description": "Custom web applications with complex functionality tailored to your specific business needs.",
+    "delay": 500
+  }
+]
