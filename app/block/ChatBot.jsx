@@ -17,65 +17,56 @@ export default function ChatBot() {
   useEffect(() => {
     const updatePosition = () => {
       if (typeof window !== "undefined") {
-        // Calculate safe position within screen bounds
         const maxX = window.innerWidth - buttonSize;
         const maxY = window.innerHeight - buttonSize;
-        
+
         if (window.innerWidth < 640) {
-          setPosition({ 
-            x: Math.min(maxX, window.innerWidth - 100), 
-            y: Math.min(maxY, window.innerHeight - 100) 
+          setPosition({
+            x: Math.min(maxX, window.innerWidth - 100),
+            y: Math.min(maxY, window.innerHeight - 100),
           });
         } else if (window.innerWidth < 768) {
-          setPosition({ 
-            x: Math.min(maxX, window.innerWidth - 100), 
-            y: Math.min(maxY, window.innerHeight - 100) 
+          setPosition({
+            x: Math.min(maxX, window.innerWidth - 100),
+            y: Math.min(maxY, window.innerHeight - 100),
           });
         } else {
-          setPosition({ 
-            x: Math.min(maxX, window.innerWidth - 140), 
-            y: Math.min(maxY, window.innerHeight - 120) 
+          setPosition({
+            x: Math.min(maxX, window.innerWidth - 140),
+            y: Math.min(maxY, window.innerHeight - 120),
           });
         }
       }
     };
 
     updatePosition();
-    window.addEventListener('resize', updatePosition);
-    
+    window.addEventListener("resize", updatePosition);
     return () => {
-      window.removeEventListener('resize', updatePosition);
+      window.removeEventListener("resize", updatePosition);
     };
   }, []);
 
+  /** 🖱️ Mouse Handlers **/
   const handleMouseDown = (e) => {
     if (buttonRef.current && !isOpen) {
       setIsDragging(true);
       const rect = buttonRef.current.getBoundingClientRect();
       setDragOffset({
         x: e.clientX - rect.left,
-        y: e.clientY - rect.top
+        y: e.clientY - rect.top,
       });
     }
   };
 
   const handleMouseMove = (e) => {
     if (isDragging) {
-      // Calculate new position with boundary constraints
       const newX = e.clientX - dragOffset.x;
       const newY = e.clientY - dragOffset.y;
-      
-      // Get screen dimensions
       const maxX = window.innerWidth - buttonSize;
       const maxY = window.innerHeight - buttonSize;
-      
-      // Apply boundaries
-      const boundedX = Math.max(0, Math.min(newX, maxX));
-      const boundedY = Math.max(0, Math.min(newY, maxY));
-      
       setPosition({
-        x: boundedX,
-        y: boundedY
+        x: Math.max(0, Math.min(newX, maxX)),
+        y: Math.max(0, Math.min(newY, maxY)),
       });
     }
   };
@@ -84,27 +75,66 @@ export default function ChatBot() {
     setIsDragging(false);
   };
 
+  /** 📱 Touch Handlers **/
+  const handleTouchStart = (e) => {
+    if (buttonRef.current && !isOpen) {
+      setIsDragging(true);
+      const rect = buttonRef.current.getBoundingClientRect();
+      const touch = e.touches[0];
+      setDragOffset({
+        x: touch.clientX - rect.left,
+        y: touch.clientY - rect.top,
+      });
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (isDragging) {
+      const touch = e.touches[0];
+      const newX = touch.clientX - dragOffset.x;
+      const newY = touch.clientY - dragOffset.y;
+      const maxX = window.innerWidth - buttonSize;
+      const maxY = window.innerHeight - buttonSize;
+      setPosition({
+        x: Math.max(0, Math.min(newX, maxX)),
+        y: Math.max(0, Math.min(newY, maxY)),
+      });
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  /** 🌀 Attach Events **/
   useEffect(() => {
     if (isDragging) {
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUp);
-      document.body.style.userSelect = 'none';
-      document.body.style.cursor = 'grabbing';
+      window.addEventListener("mousemove", handleMouseMove);
+      window.addEventListener("mouseup", handleMouseUp);
+      window.addEventListener("touchmove", handleTouchMove);
+      window.addEventListener("touchend", handleTouchEnd);
+      document.body.style.userSelect = "none";
+      document.body.style.cursor = "grabbing";
     } else {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-      document.body.style.userSelect = '';
-      document.body.style.cursor = '';
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+      document.body.style.userSelect = "";
+      document.body.style.cursor = "";
     }
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseup', handleMouseUp);
-      document.body.style.userSelect = '';
-      document.body.style.cursor = '';
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchend", handleTouchEnd);
+      document.body.style.userSelect = "";
+      document.body.style.cursor = "";
     };
   }, [isDragging, dragOffset]);
 
+  /** 💬 Chat Logic **/
   const suggestions = [
     "Show me Dave's projects",
     "Tell me his experiences",
@@ -142,26 +172,27 @@ export default function ChatBot() {
 
   return (
     <>
-      {/* Floating Button (only when closed) */}
+      {/* Floating Button */}
       {!isOpen && (
         <button
           ref={buttonRef}
           onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
           onClick={() => !isDragging && setIsOpen(true)}
           className="fixed z-50 p-[10px] rounded-full bg-gradient-to-r from-green-500 to-blue-600 text-white shadow-lg hover:scale-110 transform transition-all duration-300 ease-out cursor-grab active:cursor-grabbing"
           style={{
             left: `${position.x}px`,
             top: `${position.y}px`,
-            transition: isDragging ? 'none' : 'all 0.3s ease-out',
-            transform: isDragging ? 'scale(1.1)' : '',
-            boxShadow: isDragging ? '0 10px 25px rgba(0, 0, 0, 0.2)' : ''
+            transition: isDragging ? "none" : "all 0.3s ease-out",
+            transform: isDragging ? "scale(1.1)" : "",
+            boxShadow: isDragging ? "0 10px 25px rgba(0, 0, 0, 0.2)" : "",
           }}
         >
           <MessageCircle size={26} />
         </button>
       )}
 
-      {/* Overlay + Chat Window (when open) */}
+      {/* Overlay + Chat Window */}
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
           {/* Dark overlay */}
@@ -268,8 +299,6 @@ export default function ChatBot() {
             transform: translateY(0);
           }
         }
-
-        /* Glass Effect Scrollbar */
         .glass-scrollbar::-webkit-scrollbar {
           width: 8px;
         }
