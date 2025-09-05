@@ -18,7 +18,6 @@ export default async function handler(req, res) {
 
     const lowerMsg = message.toLowerCase().trim();
 
-    // ✅ Improved keyword detection with better matching
     const isExperience = /(experience|job|work|career|background|role|position)/i.test(lowerMsg);
     const isEducation = /(education|degree|school|college|study)/i.test(lowerMsg);
     const isReference = /(reference|recommendation|contact)/i.test(lowerMsg);
@@ -27,7 +26,6 @@ export default async function handler(req, res) {
     const isSocial = /(social|link|github|linkedin|facebook|twitter|instagram)/i.test(lowerMsg);
     const isGreeting = /^(hi|hello|hey|greetings|good morning|good afternoon|good evening)/i.test(lowerMsg);
 
-    // Fallback response generator
     const generateFallbackResponse = () => {
       if (isGreeting) {
         return "Hello! I'm Dave's portfolio assistant. I can tell you about his experiences, projects, services, education, or social links. What would you like to know?";
@@ -71,11 +69,9 @@ export default async function handler(req, res) {
         ).join('\n');
       }
 
-      // Default response for unclear queries
       return "I'm here to help you learn about Dave's portfolio. You can ask about:\n• His work experiences\n• His education background\n• His projects\n• Services he offers\n• Social media links\n• Professional references\n\nWhat would you like to know?";
     };
 
-    // Try to use Gemini API, but fall back to local response if it fails
     try {
       const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
       const model = genAI.getGenerativeModel({
@@ -113,7 +109,6 @@ RULES:
       res.status(200).json({ reply: result.response.text() });
       
     } catch (apiError) {
-      // Use fallback when API fails
       console.warn("API failed, using fallback:", apiError.message);
       const fallbackResponse = generateFallbackResponse();
       res.status(200).json({ 
@@ -125,7 +120,6 @@ RULES:
   } catch (err) {
     console.error("Unexpected error:", err);
     
-    // Final fallback in case of complete failure
     const finalFallback = `I'm Dave's portfolio assistant. Due to technical limitations, I can provide information from my local database:
 
 Services Dave offers:
