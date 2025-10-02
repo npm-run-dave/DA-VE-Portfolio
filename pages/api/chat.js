@@ -5,7 +5,7 @@ import services from "../../Static/services.json";
 import socialLinks from "../../Static/SocialLinks.json";
 
 export default async function handler(req, res) {
-  if (req.method !== "POST"
+  if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
@@ -18,13 +18,25 @@ export default async function handler(req, res) {
 
     const lowerMsg = message.toLowerCase().trim();
 
-    const isExperience = /(experience|job|work|career|background|role|position)/i.test(lowerMsg);
-    const isEducation = /(education|degree|school|college|study)/i.test(lowerMsg);
+    const isExperience =
+      /(experience|job|work|career|background|role|position)/i.test(lowerMsg);
+    const isEducation = /(education|degree|school|college|study)/i.test(
+      lowerMsg
+    );
     const isReference = /(reference|recommendation|contact)/i.test(lowerMsg);
-    const isProject = /(project|portfolio|app|application|website)/i.test(lowerMsg);
-    const isService = /(service|skill|offer|what.*can|what.*do|expertise)/i.test(lowerMsg);
-    const isSocial = /(social|link|github|linkedin|facebook|twitter|instagram)/i.test(lowerMsg);
-    const isGreeting = /^(hi|hello|hey|greetings|good morning|good afternoon|good evening)/i.test(lowerMsg);
+    const isProject = /(project|portfolio|app|application|website)/i.test(
+      lowerMsg
+    );
+    const isService =
+      /(service|skill|offer|what.*can|what.*do|expertise)/i.test(lowerMsg);
+    const isSocial =
+      /(social|link|github|linkedin|facebook|twitter|instagram)/i.test(
+        lowerMsg
+      );
+    const isGreeting =
+      /^(hi|hello|hey|greetings|good morning|good afternoon|good evening)/i.test(
+        lowerMsg
+      );
 
     const generateFallbackResponse = () => {
       if (isGreeting) {
@@ -33,40 +45,56 @@ export default async function handler(req, res) {
 
       if (isService) {
         const serviceEmojis = ["🎨", "💻", "🎯", "⚡", "📱", "🔧"];
-        return services.map((service, index) => 
-          `• ${serviceEmojis[index % serviceEmojis.length]} **${service.title}**\n  ${service.description}`
-        ).join('\n\n');
+        return services
+          .map(
+            (service, index) =>
+              `• ${serviceEmojis[index % serviceEmojis.length]} **${
+                service.title
+              }**\n  ${service.description}`
+          )
+          .join("\n\n");
       }
 
       if (isExperience) {
-        return experienceData.experiences.map(exp => 
-          `• **${exp.role}** — ${exp.company} (${exp.years})\n  ${exp.description}`
-        ).join('\n\n');
+        return experienceData.experiences
+          .map(
+            (exp) =>
+              `• **${exp.role}** — ${exp.company} (${exp.years})\n  ${exp.description}`
+          )
+          .join("\n\n");
       }
-      
+
       if (isEducation) {
-        return experienceData.education.map(edu => 
-          `• **${edu.degree}** — ${edu.school} (${edu.years})`
-        ).join('\n\n');
+        return experienceData.education
+          .map((edu) => `• **${edu.degree}** — ${edu.school} (${edu.years})`)
+          .join("\n\n");
       }
-      
+
       if (isReference) {
-        return experienceData.references.map(ref => 
-          `• **${ref.name}** — ${ref.position}\n  Email: ${ref.email}\n  Phone: ${ref.phone}`
-        ).join('\n\n');
+        return experienceData.references
+          .map(
+            (ref) =>
+              `• **${ref.name}** — ${ref.position}\n  Email: ${ref.email}\n  Phone: ${ref.phone}`
+          )
+          .join("\n\n");
       }
-      
+
       if (isProject) {
-        const validProjects = projects.filter(p => p.title && p.description);
-        return validProjects.map(proj => 
-          `• **${proj.title}**\n  ${proj.description}${proj.link ? `\n  Link: ${proj.link}` : ''}`
-        ).join('\n\n');
+        const validProjects = projects.filter((p) => p.title && p.description);
+        return validProjects
+          .map(
+            (proj) =>
+              `• **${proj.title}**\n  ${proj.description}${
+                proj.link ? `\n  Link: ${proj.link}` : ""
+              }`
+          )
+          .join("\n\n");
       }
-      
+
       if (isSocial) {
-        return socialLinks.map(link => 
-          `• **${link.website}**: ${link.link}`
-        ).join('\n');
+        return socialLinks
+          .map((link) => `• **${link.website}**: ${link.link}`)
+          .join("\n");
       }
 
       return "I'm here to help you learn about Dave's portfolio. You can ask about:\n• His work experiences\n• His education background\n• His projects\n• Services he offers\n• Social media links\n• Professional references\n\nWhat would you like to know?";
@@ -82,14 +110,21 @@ export default async function handler(req, res) {
 
       if (isGreeting) {
         prompt = `The user said "${message}". Reply warmly as Dave's portfolio assistant and briefly invite them to ask about specific portfolio items.`;
-      } else if (isExperience || isEducation || isReference || isProject || isService || isSocial) {
+      } else if (
+        isExperience ||
+        isEducation ||
+        isReference ||
+        isProject ||
+        isService ||
+        isSocial
+      ) {
         prompt = `
 You are Dave's Portfolio Assistant. Answer the user's question using ONLY the data below:
 
 EXPERIENCES: ${JSON.stringify(experienceData.experiences)}
 EDUCATION: ${JSON.stringify(experienceData.education)}
 REFERENCES: ${JSON.stringify(experienceData.references)}
-PROJECTS: ${JSON.stringify(projects.filter(p => p.title && p.description))}
+PROJECTS: ${JSON.stringify(projects.filter((p) => p.title && p.description))}
 SERVICES: ${JSON.stringify(services)}
 SOCIAL LINKS: ${JSON.stringify(socialLinks)}
 
@@ -107,23 +142,23 @@ RULES:
 
       const result = await model.generateContent(prompt);
       res.status(200).json({ reply: result.response.text() });
-      
     } catch (apiError) {
       console.warn("API failed, using fallback:", apiError.message);
       const fallbackResponse = generateFallbackResponse();
-      res.status(200).json({ 
+      res.status(200).json({
         reply: fallbackResponse,
-        note: "Using local data response"
+        note: "Using local data response",
       });
     }
-
   } catch (err) {
     console.error("Unexpected error:", err);
-    
+
     const finalFallback = `I'm Dave's portfolio assistant. Due to technical limitations, I can provide information from my local database:
 
 Services Dave offers:
-${services.map(service => `• ${service.title}: ${service.description}`).join('\n')}
+${services
+  .map((service) => `• ${service.title}: ${service.description}`)
+  .join("\n")}
 
 Feel free to ask about experiences, projects, education, or social links!`;
 
