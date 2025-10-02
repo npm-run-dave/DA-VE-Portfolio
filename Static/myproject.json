@@ -6,7 +6,7 @@
     "link": "https://instagram-clone-fawn-pi.vercel.app/",
     "repo": "https://github.com/yourname/ecommerce",
     "category": "Fullstack",
-    "tags": ["Nextjs", "Node.js" ]
+    "tags": ["Nextjs", "Node.js"]
   },
   {
     "title": "City Di Mare ",
@@ -15,14 +15,15 @@
     "link": "https://www.citydimare.com/",
     "repo": "https://github.com/yourname/ecommerce",
     "category": "Fullstack",
-    "tags": ["Nextjs", "Node.js", "tailwindcss" ]
+    "tags": ["Nextjs", "Node.js", "tailwindcss"]
   },
   {
-    "title": "",
-    "image": "",
-    "description": "",
-    "link": ""
-    
+    "title": "Clovrlife Spa ",
+    "image": "/Clovrspa.webp",
+    "description": "CLOVR Life Spa is here to change the way you think about spas and spa services. This isn't just about pampering yourself for a day. It's about embracing a lifestyle that prioritizes your well-being and happiness.",
+    "link": "https://www.clovrlifespa.com/",
+    "category": "Frontend",
+    "tags": ["Nextjs", "tailwindcss", "HASPcms"]
   },
 
   {
