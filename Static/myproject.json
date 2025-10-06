@@ -2,7 +2,7 @@
   {
     "title": "Instagram Clone ",
     "description": "I created an Instagram clone that allows users to share photos and videos, follow others, like and comment on posts, and manage their profiles.",
-    "image": "/Insta.png",
+    "image": "/Instaclone.jpg",
     "link": "https://instagram-clone-fawn-pi.vercel.app/",
     "repo": "https://github.com/yourname/ecommerce",
     "category": "Fullstack",
@@ -11,7 +11,7 @@
   {
     "title": "City Di Mare ",
     "description": "City di Mare in Cebu City is a master-planned community that fosters a complete modern live-work-play lifestyle cradied by nature.",
-    "image": "/Citydimare.png",
+    "image": "/citydimare.webp",
     "link": "https://www.citydimare.com/",
     "repo": "https://github.com/yourname/ecommerce",
     "category": "Fullstack",
@@ -19,7 +19,7 @@
   },
   {
     "title": "Clovrlife Spa ",
-    "image": "/Clovrspa.webp",
+    "image": "/clvr.jpg",
     "description": "CLOVR Life Spa is here to change the way you think about spas and spa services. This isn't just about pampering yourself for a day. It's about embracing a lifestyle that prioritizes your well-being and happiness.",
     "link": "https://www.clovrlifespa.com/",
     "category": "Frontend",
