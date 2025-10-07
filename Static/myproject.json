@@ -6,7 +6,7 @@
     "link": "https://instagram-clone-fawn-pi.vercel.app/",
     "repo": "https://github.com/yourname/ecommerce",
     "category": "Fullstack",
-    "tags": ["Nextjs", "Node.js"]
+    "tags": ["Nextjs", "tailwindcss", "MongoDB"]
   },
   {
     "title": "City Di Mare ",
@@ -24,30 +24,5 @@
     "link": "https://www.clovrlifespa.com/",
     "category": "Frontend",
     "tags": ["Nextjs", "tailwindcss", "HASPcms"]
-  },
-
-  {
-    "title": "3 ",
-    "image": "",
-    "description": "",
-    "link": ""
-  },
-  {
-    "title": "3 ",
-    "image": "",
-    "description": "",
-    "link": ""
-  },
-  {
-    "title": "3 ",
-    "image": "",
-    "description": "",
-    "link": ""
-  },
-  {
-    "title": "3 ",
-    "image": "",
-    "description": "",
-    "link": ""
   }
 ]
