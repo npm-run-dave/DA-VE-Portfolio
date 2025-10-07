@@ -1,12 +1,10 @@
 "use client";
 import { GraduationCap, Briefcase, User } from "lucide-react";
-import data from "../../Static/experience.json"; 
-import { useScrollAnimation } from "../hooks/useScrollAnimation"; // ✅ import your hook
-
+import data from "../../Static/experience.json";
+import { useScrollAnimation } from "../hooks/useScrollAnimation";
 export default function Experience() {
   const { education, experiences, references } = data;
 
-  // A reusable component for scroll-animated items
   const AnimatedItem = ({ children, delay = 0 }) => {
     const { ref, isVisible } = useScrollAnimation(0.2);
 
@@ -14,9 +12,7 @@ export default function Experience() {
       <div
         ref={ref}
         className={`transition-all duration-700 ease-out transform ${
-          isVisible
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10"
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
         style={{ transitionDelay: `${delay}s` }}
       >
@@ -28,7 +24,6 @@ export default function Experience() {
   return (
     <section className="w-full px-6 py-16 bg-black text-gray-100">
       <div className="max-w-6xl mx-auto space-y-16">
-        {/* Education */}
         <div>
           <h2 className="flex items-center gap-2 text-3xl font-bold mb-8">
             <GraduationCap className="text-blue-400" />
@@ -50,7 +45,6 @@ export default function Experience() {
           </div>
         </div>
 
-        {/* Experience */}
         <div>
           <h2 className="flex items-center gap-2 text-3xl font-bold mb-8">
             <Briefcase className="text-green-400" />
@@ -75,7 +69,6 @@ export default function Experience() {
           </div>
         </div>
 
-        {/* References */}
         <div>
           <h2 className="flex items-center gap-2 text-3xl font-bold mb-8">
             <User className="text-purple-400" />

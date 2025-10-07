@@ -2,10 +2,8 @@ import React from "react";
 import { ExternalLink, Github } from "lucide-react";
 
 export default function ProjectCard({ project }) {
-  // ✅ default export
   return (
     <div className="group relative overflow-hidden rounded-xl bg-gradient-to-b from-gray-800/80 to-gray-900/90 backdrop-blur-sm border border-gray-800/50 hover:border-teal-500/30 transition-all duration-300 shadow-lg hover:shadow-xl hover:shadow-teal-500/10 h-full flex flex-col">
-      {/* Image Container */}
       <div className="h-48 sm:h-52 overflow-hidden relative">
         {project.image ? (
           <img
@@ -18,7 +16,6 @@ export default function ProjectCard({ project }) {
             <span className="text-gray-400 text-sm">No Image Available</span>
           </div>
         )}
-        {/* Category Badge */}
         <div className="absolute top-3 right-3">
           <span className="bg-black/60 backdrop-blur-sm text-xs font-medium px-2.5 py-1 rounded-full text-teal-400 border border-teal-500/20">
             {project.category}
@@ -26,7 +23,6 @@ export default function ProjectCard({ project }) {
         </div>
       </div>
 
-      {/* Content */}
       <div className="p-5 flex flex-col flex-grow">
         <h3 className="font-bold text-xl text-white mb-2 group-hover:text-teal-400 transition-colors duration-300">
           {project.title}
@@ -35,7 +31,6 @@ export default function ProjectCard({ project }) {
           {project.description}
         </p>
 
-        {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-4">
           {project?.tags?.map((tag, idx) => (
             <span
@@ -47,7 +42,6 @@ export default function ProjectCard({ project }) {
           ))}
         </div>
 
-        {/* Links */}
         <div className="flex items-center justify-between mt-auto pt-3 border-t border-gray-800/50">
           {project.github && (
             <a

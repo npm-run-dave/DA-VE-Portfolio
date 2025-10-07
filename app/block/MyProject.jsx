@@ -7,7 +7,6 @@ import ProjectCard from "./ProjectCard"; // ✅ use default import
 const categories = ["All", "Frontend", "Backend", "Fullstack"];
 
 export default function MyProject() {
-  // ✅ default export
   const [selected, setSelected] = useState("All");
   const [showAll, setShowAll] = useState(false);
   const [open, setOpen] = useState(false);
@@ -24,7 +23,6 @@ export default function MyProject() {
   return (
     <section className="min-h-screen w-full  text-white px-4 sm:px-6 lg:px-12 py-16">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
         <div className="mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-600 mb-3">
             My Projects
@@ -34,7 +32,6 @@ export default function MyProject() {
           </p>
         </div>
 
-        {/* Filter - Mobile */}
         <div className="relative sm:hidden w-full max-w-xs mx-auto mb-8">
           <button
             onClick={() => setOpen(!open)}
@@ -76,7 +73,6 @@ export default function MyProject() {
           </div>
         </div>
 
-        {/* Filter - Desktop */}
         <div className="hidden sm:flex justify-center gap-4 mb-12">
           {categories.map((cat) => (
             <button
@@ -98,14 +94,12 @@ export default function MyProject() {
           ))}
         </div>
 
-        {/* Projects Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {displayedProjects.map((project, index) => (
             <ProjectCard key={index} project={project} />
           ))}
         </div>
 
-        {/* Show More Button */}
         {filteredProjects.length > 3 && (
           <div className="mt-12 text-center">
             <button
