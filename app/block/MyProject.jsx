@@ -32,7 +32,7 @@ export default function MyProject() {
           </p>
         </div>
 
-        <div className="relative sm:hidden w-full max-w-xs mx-auto mb-8">
+        <div className="relative sm:hidden w-full max-w-xs mx-auto mb-8 ">
           <button
             onClick={() => setOpen(!open)}
             className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-gray-800/70 backdrop-blur-sm text-gray-200 border border-gray-700/50 focus:outline-none focus:ring-2 focus:ring-teal-500/50"
