@@ -1,4 +1,5 @@
 export default function robots() {
+  const baseUrl = "https://da-ve-portfolio.vercel.app";
   return {
     rules: [
       {
@@ -6,7 +7,6 @@ export default function robots() {
         allow: "/",
       },
     ],
-    sitemap: "https://da-ve-portfolio.vercel.app/sitemap.xml",
-    host: "https://da-ve-portfolio.vercel.app",
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }
