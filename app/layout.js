@@ -56,7 +56,7 @@ export default function RootLayout({ children }) {
           name="google-site-verification"
           content="zrr_4MxKf4tBpVG93XQb-neL0lwwrK9sa0jD-BMXd2E"
         />
-
+        <meta name="msvalidate.01" content="D1CAB8985A1ED9CD0B5906A0FA3EF222" />
         {/* ✅ Basic SEO */}
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Dave" />
