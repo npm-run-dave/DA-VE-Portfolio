@@ -4,7 +4,6 @@ import Image from "next/image";
 import { Typewriter } from "react-simple-typewriter";
 import Link from "next/link";
 
-// Direct imports instead of dynamic
 import Techtacks from "./block/Techtacks";
 import MyProject from "./block/MyProject";
 import Services from "./block/Services";
@@ -46,14 +45,12 @@ export default function Home() {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Detect direction
       if (currentScrollY > lastScrollY.current && currentScrollY > 50) {
         setScrollDirection("down");
       } else if (currentScrollY < lastScrollY.current && currentScrollY > 50) {
         setScrollDirection("up");
       }
 
-      // Show/hide button
       setShowScrollButton(currentScrollY > 300);
 
       lastScrollY.current = currentScrollY;
@@ -91,7 +88,6 @@ export default function Home() {
             isLoading ? "opacity-0" : "opacity-100"
           }`}
         >
-          {/* Logo */}
           <Image
             className="mx-auto sm:mx-0"
             src="/LOGO.png"
@@ -101,7 +97,6 @@ export default function Home() {
             priority
           />
 
-          {/* Intro */}
           <ol className="list-inside text-sm px-[10px] sm:px-[55px] text-center sm:text-left font-[family-name:var(--font-geist-mono)] min-h-[150px]">
             <li className="mb-4 sm:mb-2">
               <span className="text-[#DCFAF4] text-[18px] sm:text-[20px] md:text-[40px] lg:text-3xl">
@@ -123,7 +118,6 @@ export default function Home() {
             </li>
           </ol>
 
-          {/* Buttons */}
           <div className="flex gap-4 items-center flex-col sm:flex-row pt-[45px] px-[25px] sm:px-[55px]">
             <Link
               href="#"
@@ -149,9 +143,11 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Social links */}
           <div className="flex gap-2 pt-[20px] px-[70px] justify-center sm:justify-start sm:px-[55px] sm:pt-[35px]">
-            <Link href="#" className="h-[40px] w-[40px] hover:scale-110">
+            <Link
+              href="https://github.com/npm-run-dave"
+              className="h-[40px] w-[40px] hover:scale-110"
+            >
               <Image
                 className="rounded-lg cursor-pointer object-fill"
                 src="/Github.png"
@@ -161,7 +157,10 @@ export default function Home() {
                 loading="lazy"
               />
             </Link>
-            <Link href="#" className="h-[40px] w-[40px] hover:scale-110">
+            <Link
+              href="https://www.linkedin.com/in/do%C3%B1o-ryan-dave-p-bba305346/"
+              className="h-[40px] w-[40px] hover:scale-110"
+            >
               <Image
                 className="rounded-lg cursor-pointer object-fill"
                 src="/Linkin.png"
@@ -171,7 +170,10 @@ export default function Home() {
                 loading="lazy"
               />
             </Link>
-            <Link href="#" className="h-[40px] w-[40px] hover:scale-110">
+            <Link
+              href="https://www.facebook.com/dave.penas/"
+              className="h-[40px] w-[40px] hover:scale-110"
+            >
               <Image
                 className="rounded-lg cursor-pointer object-fill"
                 src="/Facebook.png"
@@ -184,10 +186,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Tech stack */}
         <Techtacks />
 
-        {/* Sections */}
         <div className="pt-[150px] h-full text-white scroll-smooth">
           <div className="blocked " ref={projectsRef} id="projects">
             <MyProject />
@@ -201,7 +201,6 @@ export default function Home() {
             <Experience />
           </div>
 
-          {/* Contact */}
           <div className="blocked " ref={contactRef}>
             <h1 className="font-bold text-2xl px-[35px] text-center mt-20">
               CONTACT
@@ -213,7 +212,6 @@ export default function Home() {
 
       <DownloadApp />
 
-      {/* Scroll button */}
       {showScrollButton && (
         <button
           onClick={handleScroll}
