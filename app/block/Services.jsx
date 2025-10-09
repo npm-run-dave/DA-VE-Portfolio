@@ -12,7 +12,6 @@ import {
 
 import servicesData from "@/Static/services.json";
 
-// Map string names in JSON → actual Lucide icons
 const icons = {
   CodeIcon,
   PenToolIcon,
