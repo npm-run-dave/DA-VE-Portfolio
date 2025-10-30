@@ -24,5 +24,13 @@
     "link": "https://www.clovrlifespa.com/",
     "category": "Frontend",
     "tags": ["Nextjs", "tailwindcss", "HASPcms"]
+  },
+  {
+    "title": "Quest Hotel Manila ",
+    "image": "/questhotelmanila.jpg",
+    "description": "Quest Hotel Manila is a contemporary hotel located in the heart of the bustling business and entertainment district of Ortigas Center, Pasig City, Philippines. It offers modern amenities and comfortable accommodations for both business and leisure travelers.",
+    "link": "https://www.questhotelsandresorts.com/manila",
+    "category": "Frontend",
+    "tags": ["HASPcms", "Maintenance"]
   }
 ]
