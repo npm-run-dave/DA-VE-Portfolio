@@ -58,7 +58,10 @@ export default function Experience() {
                   <div className="bg-gray-900/70 p-6 rounded-2xl shadow-lg border border-gray-800">
                     <h3 className="text-lg font-semibold">{exp.role}</h3>
                     <p className="text-gray-400">{exp.company}</p>
-                    <p className="text-sm text-green-400 mb-2">{exp.years}</p>
+                    <p className="text-sm text-green-400 mb-2">
+                      {exp.startYear} –{""}
+                      {exp.endYear || new Date().getFullYear()}
+                    </p>
                     <p className="text-gray-300 text-sm leading-relaxed">
                       {exp.description}
                     </p>

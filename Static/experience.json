@@ -1,6 +1,6 @@
 {
   "education": [
-     {
+    {
       "degree": "Bachelor of Science in Information Technology (BSIT)",
       "school": "Cordova Public College",
       "years": "2021 – 2025"
@@ -10,25 +10,23 @@
       "school": "Babag National High School",
       "years": "2017 – 2019"
     }
-   
   ],
 
   "experiences": [
     {
       "role": "Junior Web Developer",
       "company": "Agile Web Works Inc.",
-      "years": "2025 – Present",
+      "startYear": 2025,
       "description": "Developing and maintaining web applications using modern frameworks, collaborating in Agile sprints, and ensuring code quality through testing and reviews."
     },
     {
       "role": "Internship as a Web Developer",
       "company": "Halcyon Digital Inc.",
-      "years": "2024 – 2025",
+      "startYear": 2024,
+      "endYear": 2025,
       "description": "Assisted in building responsive websites, debugged code issues, and supported senior developers in delivering client projects."
     }
-    
   ],
-
   "references": [
     {
       "name": "Diome Nike S. Potot",
