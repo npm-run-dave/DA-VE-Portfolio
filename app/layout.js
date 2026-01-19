@@ -43,7 +43,7 @@ export const metadata = {
     title: "ryandave Portfolio",
     description:
       "Explore Dave's web development projects, creative services, and contact details — built with Next.js 14, Tailwind, and Vercel.",
-    url: "https://da-ve-portfolio.vercel.app/",
+    url: "https://ryandave.vercel.app",
     siteName: "ryandave Portfolio",
     images: [
       {
