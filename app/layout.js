@@ -9,6 +9,7 @@ export const metadata = {
     "A modern developer portfolio by Dave — showcasing web development, design, and interactive projects built with Next.js and Tailwind CSS.",
   generator: "Next.js",
   manifest: "/manifest.json",
+
   keywords: [
     "nextjs",
     "next14",
@@ -19,54 +20,60 @@ export const metadata = {
     "react",
     "tailwindcss",
   ],
+
   authors: [
     {
-      name: "imvinojanv",
+      name: "Dave",
       url: "https://www.linkedin.com/in/imvinojanv/",
     },
   ],
+
+  metadataBase: new URL("https://ryandave.vercel.app"),
+
+  alternates: {
+    canonical: "/",
+  },
+
+  icons: {
+    icon: "/LOGO-128.png",
+    apple: "/LOGO-128.png",
+  },
+
   openGraph: {
-    title: "DA VE Portfolio",
+    title: "ryandave Portfolio",
     description:
       "Explore Dave's web development projects, creative services, and contact details — built with Next.js 14, Tailwind, and Vercel.",
-    url: "https://da-ve-portfolio.vercel.app/",
-    siteName: "DA VE Portfolio",
+    url: "https://ryandave.vercel.app",
+    siteName: "ryandave Portfolio",
     images: [
       {
-        url: "https://da-ve-portfolio.vercel.app/LOGO-128.png",
+        url: "/LOGO-128.png",
         width: 1200,
         height: 630,
-        alt: "DA VE Portfolio",
+        alt: "ryandave Portfolio",
       },
     ],
     locale: "en_US",
     type: "website",
   },
-  icons: [
-    { rel: "apple-touch-icon", url: "/LOGO-128.png" },
-    { rel: "icon", url: "/LOGO-128.png" },
-  ],
+
+  twitter: {
+    card: "summary_large_image",
+    title: "ryandave Portfolio",
+    description:
+      "Explore Dave's web development projects, creative services, and contact details.",
+    images: ["/LOGO-128.png"],
+    creator: "@imvinojanv",
+  },
+
+  verification: {
+    facebook: "q8a8ladzrqvaanzxmka7i3wzugq4lb",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <meta
-          name="google-site-verification"
-          content="zrr_4MxKf4tBpVG93XQb-neL0lwwrK9sa0jD-BMXd2E"
-        />
-        <meta name="msvalidate.01" content="D1CAB8985A1ED9CD0B5906A0FA3EF222" />
-        {/* ✅ Basic SEO */}
-        <meta name="robots" content="index, follow" />
-        <meta name="author" content="Dave" />
-
-        <meta name="theme-color" content="#000000" />
-        <link rel="manifest" href="/manifest.json" />
-
-        <meta property="og:image" content="/LOGO-128.png" />
-        <meta property="og:type" content="website" />
-      </head>
       <body className={inter.className}>{children}</body>
     </html>
   );
