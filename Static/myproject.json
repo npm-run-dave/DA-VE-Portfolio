@@ -1,14 +1,5 @@
 [
   {
-    "title": "Instagram Clone ",
-    "description": "I created an Instagram clone that allows users to share photos and videos, follow others, like and comment on posts, and manage their profiles.",
-    "image": "/Instaclone.jpg",
-    "link": "https://instagram-clone-fawn-pi.vercel.app/",
-    "repo": "https://github.com/yourname/ecommerce",
-    "category": "Fullstack",
-    "tags": ["Nextjs", "tailwindcss", "MongoDB"]
-  },
-  {
     "title": "City Di Mare ",
     "description": "City di Mare in Cebu City is a master-planned community that fosters a complete modern live-work-play lifestyle cradied by nature.",
     "image": "/citydimare.webp",
