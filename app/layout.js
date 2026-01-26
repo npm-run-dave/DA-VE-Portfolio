@@ -4,21 +4,24 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "DA VE Portfolio",
+  title: {
+    default: "DA VE Portfolio | Frontend Developer",
+    template: "%s | DA VE Portfolio",
+  },
+
   description:
-    "A modern developer portfolio by Dave — showcasing web development, design, and interactive projects built with Next.js and Tailwind CSS.",
+    "DA VE Portfolio by Dave, a frontend developer specializing in Next.js, React, and Tailwind CSS. View projects, services, and experience.",
+
   generator: "Next.js",
   manifest: "/manifest.json",
 
   keywords: [
-    "nextjs",
-    "next14",
-    "pwa",
     "frontend developer",
-    "fullstack developer",
-    "portfolio",
-    "react",
-    "tailwindcss",
+    "nextjs developer",
+    "react developer",
+    "tailwind css",
+    "portfolio website",
+    "web developer",
   ],
 
   authors: [
@@ -34,6 +37,15 @@ export const metadata = {
     canonical: "/",
   },
 
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+
   icons: {
     icon: "/LOGO-128.png",
     apple: "/LOGO-128.png",
@@ -42,7 +54,7 @@ export const metadata = {
   openGraph: {
     title: "ryandave Portfolio",
     description:
-      "Explore Dave's web development projects, creative services, and contact details — built with Next.js 14, Tailwind, and Vercel.",
+      "Explore Dave's web development projects, creative services, and contact details — built with Next.js and Tailwind CSS.",
     url: "https://ryandave.vercel.app",
     siteName: "ryandave Portfolio",
     images: [
@@ -57,16 +69,8 @@ export const metadata = {
     type: "website",
   },
 
-  twitter: {
-    card: "summary_large_image",
-    title: "ryandave Portfolio",
-    description:
-      "Explore Dave's web development projects, creative services, and contact details.",
-    images: ["/LOGO-128.png"],
-    creator: "@imvinojanv",
-  },
-
   verification: {
+    google: "YOUR_GOOGLE_VERIFICATION_CODE",
     facebook: "q8a8ladzrqvaanzxmka7i3wzugq4lb",
   },
 };

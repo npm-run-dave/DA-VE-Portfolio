@@ -25,7 +25,7 @@ export default function MyProject() {
       <div className="max-w-7xl mx-auto">
         <div className="mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-teal-600 mb-3">
-            My Projects
+            My Experience
           </h2>
           <p className="text-gray-400 text-center max-w-2xl mx-auto">
             Explore my portfolio of work across various technologies and domains
