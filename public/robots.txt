@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://ryandave.vercel.app/
+
+# Sitemaps
+Sitemap: https://ryandave.vercel.app/sitemap.xml
