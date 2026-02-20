@@ -30,11 +30,14 @@
   "references": [
     {
       "name": "Diome Nike S. Potot",
-      "position": "Front End Lead Publicis Groupe Philippines (Digitas)"
+      "position": "Front End Lead Publicis Groupe Philippines (Digitas)",
+      "email": "diomenikep@gmail.com"
     },
     {
       "name": "Nicasio P. Amoin",
-      "position": "Dean of the College Of Information Technology , Cordova Public College"
+      "position": "Dean of the College Of Information Technology , Cordova Public College",
+      "email": "nicasioamoin@gmail.com",
+      "phone": "+63 9065641184"
     }
   ]
 }
