@@ -1,93 +1,55 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { LRUCache } from "lru-cache"; // correct import for v7+
+import { LRUCache } from "lru-cache";
 
 import experienceData from "../../Static/experience.json";
 import projects from "../../Static/myproject.json";
 import services from "../../Static/services.json";
 import socialLinks from "../../Static/SocialLinks.json";
 
-/* =========================
-   🔒 RATE LIMIT CONFIG
-========================= */
-const rateLimit = new LRUCache({ max: 500, ttl: 1000 * 60 }); // 1 min window
+const rateLimit = new LRUCache({ max: 500, ttl: 1000 * 60 });
+const cooldownMap = new Map();
+const blockedIPs = new Map();
+const globalRate = new LRUCache({ max: 1000, ttl: 1000 * 60 });
+
+function getClientIP(req) {
+  return (
+    req.headers["x-forwarded-for"]?.split(",")[0] ||
+    req.socket?.remoteAddress ||
+    "unknown"
+  );
+}
 
 function checkRateLimit(ip) {
   const user = rateLimit.get(ip) || { count: 0 };
   user.count += 1;
   rateLimit.set(ip, user);
-  return user.count <= 10; // max 10 req/min
+  return user.count <= 10;
 }
-
-/* =========================
-   ⏱️ COOLDOWN CONFIG
-========================= */
-const cooldownMap = new Map();
 
 function checkCooldown(ip) {
   const now = Date.now();
   const last = cooldownMap.get(ip) || 0;
-  if (now - last < 1500) return false; // 1.5s cooldown
+  if (now - last < 1500) return false;
   cooldownMap.set(ip, now);
   return true;
 }
 
-/* =========================
-   ⚡ GEMINI REQUEST QUEUE
-========================= */
-const maxConcurrent = 3;
-let activeRequests = 0;
-const queue = [];
-
-async function handleRequest(fn) {
-  if (activeRequests >= maxConcurrent) {
-    return new Promise((resolve, reject) =>
-      queue.push({ fn, resolve, reject })
-    );
-  }
-
-  activeRequests++;
-  try {
-    const result = await fn();
-    return result;
-  } finally {
-    activeRequests--;
-    if (queue.length > 0) {
-      const next = queue.shift();
-      handleRequest(next.fn).then(next.resolve).catch(next.reject);
-    }
-  }
-}
-
-/* =========================
-   🛡️ EXTRA SECURITY
-========================= */
-const blockedIPs = new Map(); // temporarily blocked IPs
-const globalRate = new LRUCache({ max: 1000, ttl: 1000 * 60 }); // burst control 1 min
-
 function checkExtraSecurity(ip, message) {
-  // blocked IP
   if (blockedIPs.has(ip))
     return { allowed: false, reason: "Temporarily blocked" };
-
-  // burst check
   const user = globalRate.get(ip) || { count: 0 };
   user.count += 1;
   globalRate.set(ip, user);
   if (user.count > 20) {
-    // max 20 requests/min
-    blockedIPs.set(ip, Date.now() + 1000 * 60 * 5); // block 5 min
+    blockedIPs.set(ip, Date.now() + 1000 * 60 * 5);
     return { allowed: false, reason: "Too many requests, temporarily blocked" };
   }
-
-  // suspicious content
   const suspicious = /(<script|http|www|\.com|free money|click here)/i;
   if (suspicious.test(message))
     return { allowed: false, reason: "Suspicious content detected" };
-
   return { allowed: true };
 }
 
-// Cleanup blocked IPs every minute
 setInterval(() => {
   const now = Date.now();
   for (const [ip, expire] of blockedIPs.entries()) {
@@ -95,9 +57,6 @@ setInterval(() => {
   }
 }, 1000 * 60);
 
-/* =========================
-   🛡️ INPUT VALIDATION
-========================= */
 function validateMessage(message) {
   if (!message || typeof message !== "string") return "Message required";
   const trimmed = message.trim();
@@ -106,36 +65,39 @@ function validateMessage(message) {
   return null;
 }
 
-/* =========================
-   🚀 API HANDLER
-========================= */
 export default async function handler(req, res) {
   if (req.method !== "POST")
     return res.status(405).json({ error: "Method not allowed" });
-
-  const ip =
-    req.headers["x-forwarded-for"]?.split(",")[0] ||
-    req.socket?.remoteAddress ||
-    "unknown";
+  const ip = getClientIP(req);
+  const { message, mode, recaptchaToken } = req.body;
 
   if (!checkRateLimit(ip))
     return res.status(429).json({ error: "Too many requests. Slow down." });
   if (!checkCooldown(ip))
     return res.status(429).json({ error: "You're sending requests too fast." });
 
-  const { message, mode } = req.body;
-
   const validationError = validateMessage(message);
   if (validationError) return res.status(400).json({ error: validationError });
 
   const extraSecurity = checkExtraSecurity(ip, message);
-  if (!extraSecurity.allowed) {
-    console.warn(`Blocked IP ${ip}: ${extraSecurity.reason}`);
-    return res.status(429).json({ error: extraSecurity.reason });
+  if (!extraSecurity.allowed)
+    return res
+      .status(429)
+      .json({ error: "captcha_required", reason: extraSecurity.reason });
+
+  if (recaptchaToken) {
+    try {
+      const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}&remoteip=${ip}`;
+      const recaptchaRes = await fetch(verifyUrl, { method: "POST" });
+      const recaptchaData = await recaptchaRes.json();
+      if (!recaptchaData.success)
+        return res.status(403).json({ error: "Invalid captcha" });
+    } catch (e) {
+      return res.status(500).json({ error: "Captcha verification failed" });
+    }
   }
 
-  const lowerMsg = message.toLowerCase().trim();
-
+  const lowerMsg = message.toLowerCase();
   const isExperience = /(experience|job|work|career|role)/i.test(lowerMsg);
   const isEducation = /(education|degree|school|college|study)/i.test(lowerMsg);
   const isReference = /(reference|recommendation|contact)/i.test(lowerMsg);
@@ -228,8 +190,7 @@ Rules:
 `;
     } else prompt = `Guide user to ask about Dave's portfolio.`;
 
-    const result = await handleRequest(() => model.generateContent(prompt));
-
+    const result = await model.generateContent(() => prompt);
     return res.status(200).json({ reply: result.response.text() });
   } catch (apiError) {
     console.warn("AI failed, using fallback:", apiError.message);
