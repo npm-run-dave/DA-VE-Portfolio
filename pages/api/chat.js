@@ -6,12 +6,9 @@ import projects from "../../Static/myproject.json";
 import services from "../../Static/services.json";
 import socialLinks from "../../Static/SocialLinks.json";
 
-/* =========================
-   🔒 RATE LIMIT CONFIG
-========================= */
 const rateLimit = new LRU({
   max: 500,
-  ttl: 1000 * 60, // 1 minute
+  ttl: 1000 * 60,
 });
 
 function checkRateLimit(ip) {
@@ -20,14 +17,11 @@ function checkRateLimit(ip) {
   user.count += 1;
   rateLimit.set(ip, user);
 
-  if (user.count > 10) return false; // max 10 req/min
+  if (user.count > 10) return false;
 
   return true;
 }
 
-/* =========================
-   ⏱️ COOLDOWN CONFIG
-========================= */
 const cooldownMap = new Map();
 
 function checkCooldown(ip) {
@@ -40,9 +34,6 @@ function checkCooldown(ip) {
   return true;
 }
 
-/* =========================
-   🛡️ INPUT VALIDATION
-========================= */
 function isInvalidMessage(message) {
   if (!message) return "Message is required";
   if (typeof message !== "string") return "Invalid message type";
@@ -58,28 +49,22 @@ function isInvalidMessage(message) {
   return null;
 }
 
-/* =========================
-   🚀 API HANDLER
-========================= */
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  // Get user IP safely
   const ip =
     req.headers["x-forwarded-for"]?.split(",")[0] ||
     req.socket?.remoteAddress ||
     "unknown";
 
-  // 🔒 Rate limit check
   if (!checkRateLimit(ip)) {
     return res.status(429).json({
       error: "Too many requests. Please try again later.",
     });
   }
 
-  // ⏱️ Cooldown check
   if (!checkCooldown(ip)) {
     return res.status(429).json({
       error: "You're sending requests too fast.",
@@ -89,7 +74,6 @@ export default async function handler(req, res) {
   try {
     const { message, mode } = req.body;
 
-    // 🛡️ Validate input
     const validationError = isInvalidMessage(message);
     if (validationError) {
       return res.status(400).json({ error: validationError });
@@ -97,9 +81,6 @@ export default async function handler(req, res) {
 
     const lowerMsg = message.toLowerCase().trim();
 
-    /* =========================
-       🔍 INTENT DETECTION
-    ========================= */
     const isExperience =
       /(experience|job|work|career|background|role|position)/i.test(lowerMsg);
 
@@ -126,9 +107,6 @@ export default async function handler(req, res) {
         lowerMsg
       );
 
-    /* =========================
-       🔁 FALLBACK RESPONSE
-    ========================= */
     const generateFallbackResponse = () => {
       if (isGreeting) {
         return "Hello! I'm Dave's portfolio assistant. Ask me about experiences, projects, services, education, or social links.";
@@ -185,9 +163,6 @@ export default async function handler(req, res) {
       return "Ask me about Dave's experience, projects, services, education, or social links.";
     };
 
-    /* =========================
-       🤖 AI RESPONSE
-    ========================= */
     try {
       const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
