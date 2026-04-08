@@ -8,13 +8,10 @@ export const metadata = {
     default: "DA VE Portfolio | Frontend Developer",
     template: "%s | DA VE Portfolio",
   },
-
   description:
     "DA VE Portfolio by Dave, a frontend developer specializing in Next.js, React, and Tailwind CSS. View projects, services, and experience.",
-
   generator: "Next.js",
   manifest: "/manifest.json",
-
   keywords: [
     "frontend developer",
     "nextjs developer",
@@ -23,34 +20,15 @@ export const metadata = {
     "portfolio website",
     "web developer",
   ],
-
-  authors: [
-    {
-      name: "Dave",
-      url: "https://www.linkedin.com/in/imvinojanv/",
-    },
-  ],
-
+  authors: [{ name: "Dave", url: "https://www.linkedin.com/in/imvinojanv/" }],
   metadataBase: new URL("https://ryandave.vercel.app"),
-
-  alternates: {
-    canonical: "/",
-  },
-
+  alternates: { canonical: "/" },
   robots: {
     index: true,
     follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-    },
+    googleBot: { index: true, follow: true },
   },
-
-  icons: {
-    icon: "/LOGO-128.png",
-    apple: "/LOGO-128.png",
-  },
-
+  icons: { icon: "/LOGO-128.png", apple: "/LOGO-128.png" },
   openGraph: {
     title: "ryandave Portfolio",
     description:
@@ -68,10 +46,7 @@ export const metadata = {
     locale: "en_US",
     type: "website",
   },
-
-  verification: {
-    facebook: "q8a8ladzrqvaanzxmka7i3wzugq4lb",
-  },
+  verification: { facebook: "q8a8ladzrqvaanzxmka7i3wzugq4lb" },
 };
 
 export default function RootLayout({ children }) {
